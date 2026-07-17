@@ -1,133 +1,269 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Futuristic Premium Portfolio - Senior Full Stack Developer & Designer">
-    <title>Aether • Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- Primary Meta Tags -->
+    <title>Aura OS | Next-Gen Premium Web Portfolio Application</title>
+    <meta name="title" content="Aura OS | Next-Gen Premium Web Portfolio Application">
+    <meta name="description" content="A futuristic, desktop-class interactive digital portfolio application featuring 3D animations, custom music player, orbital skill showcases, and interactive digital memories.">
+    <meta name="keywords" content="portfolio, fullstack developer, ui ux designer, web animation, interactive application, dark mode, glassmorphism">
+    <meta name="author" content="Aura Studio">
+    <meta name="theme-color" content="#050505">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aura-portfolio.app/">
+    <meta property="og:title" content="Aura OS | Next-Gen Web Portfolio">
+    <meta property="og:description" content="Futuristic desktop application-level portfolio built with pure HTML5, CSS3, and Vanilla JS.">
+    <meta property="og:image" content="assets/images/og-preview.jpg">
+
+    <!-- Twitter Cards -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://aura-portfolio.app/">
+    <meta property="twitter:title" content="Aura OS | Next-Gen Web Portfolio">
+    <meta property="twitter:description" content="Futuristic desktop application-level portfolio built with pure HTML5, CSS3, and Vanilla JS.">
+    <meta property="twitter:image" content="assets/images/og-preview.jpg">
+
+    <!-- Favicon & Web Manifest -->
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
-    <!-- SEO / OG -->
-    <meta property="og:title" content="Aether • Portfolio">
-    <meta property="og:description" content="Immersive digital experience by a visionary creator.">
-    <meta property="og:image" content="assets/images/profile.jpg">
 </head>
 <body>
-    <!-- Custom Cursor -->
-    <div id="custom-cursor">
-        <div class="cursor-dot"></div>
-        <div class="cursor-ring"></div>
-    </div>
 
-    <!-- Background Music -->
-    <audio id="bg-music" loop preload="auto">
-        <source src="assets/music/ambient-chill.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
+    <!-- CUSTOM CURSOR (Desktop Only) -->
+    <div id="custom-cursor" class="cursor-dot" aria-hidden="true"></div>
+    <div id="custom-cursor-follower" class="cursor-ring" aria-hidden="true"></div>
+
+    <!-- BACKGROUND AMBIENT SOUND CONTROLLER -->
+    <audio id="ambient-audio" loop preload="auto">
+        <source src="assets/music/ambient-space.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Sidebar -->
-    <aside id="sidebar" class="sidebar">
-        <div class="logo">A</div>
-        <nav class="nav-list">
-            <button data-page="home" class="nav-btn active" aria-label="Home">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            </button>
-            <button data-page="about" class="nav-btn" aria-label="About">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </button>
-            <button data-page="education" class="nav-btn" aria-label="Education">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-            </button>
-            <button data-page="interests" class="nav-btn" aria-label="Interests">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
-            </button>
-            <button data-page="personal" class="nav-btn" aria-label="Personal Life">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.34a4 4 0 0 1 4 4"/></svg>
-            </button>
-        </nav>
-    </aside>
-
-    <!-- Hamburger -->
-    <button id="hamburger" class="hamburger" aria-label="Menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu hidden">
-        <div class="mobile-nav">
-            <button data-page="home">Home</button>
-            <button data-page="about">About</button>
-            <button data-page="education">Education</button>
-            <button data-page="interests">Interests</button>
-            <button data-page="personal">Personal</button>
+    <div class="audio-control-floating" id="audio-toggle-btn" role="button" aria-label="Toggle Ambient Audio" tabindex="0">
+        <div class="equalizer-bars">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
+        <span class="audio-status-text">SOUND: OFF</span>
     </div>
 
-    <!-- Pages -->
-    <main>
-        <!-- HOME -->
-        <section id="home" class="page active">
-            <div class="hero">
-                <div class="profile-float">
-                    <div class="profile-glow"></div>
-                    <img src="assets/images/profile.jpg" alt="Aether Voss" class="profile-pic" id="profile-pic">
+    <!-- MAIN APP CONTAINER -->
+    <div id="app-viewport">
+
+        <!-- LEFT SIDEBAR NAVIGATION (Desktop) -->
+        <aside class="sidebar-desktop" aria-label="Main Navigation">
+            <div class="sidebar-glass-panel">
+                <div class="brand-badge">
+                    <span class="neon-dot"></span>
                 </div>
-                <h1 class="hero-name">AETHER VOSS</h1>
-                <p class="hero-tag">Crafting Tomorrow's Realities</p>
-                <div class="profession-bg">VISIONARY • CREATOR • TECHNOLOGIST</div>
                 
-                <div class="social-icons">
-                    <!-- Full list of icons with links -->
-                    <a href="#" class="social-icon" aria-label="Instagram">📷</a>
-                    <a href="#" class="social-icon" aria-label="LinkedIn">💼</a>
-                    <a href="#" class="social-icon" aria-label="GitHub">🐙</a>
-                    <!-- Add remaining: FB, YT, etc. -->
+                <nav class="nav-menu-desktop">
+                    <button class="nav-btn active" data-target="page-home" aria-label="Home" data-tooltip="Home">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn" data-target="page-about" aria-label="About Person" data-tooltip="About">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn" data-target="page-education" aria-label="Educational Background" data-tooltip="Education">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn" data-target="page-interests" aria-label="Interests & Hobbies" data-tooltip="Interests">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn" data-target="page-personal" aria-label="Personal Life & Notebook" data-tooltip="Personal Life">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                    </button>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <button class="nav-btn system-settings-btn" id="settings-trigger" aria-label="Settings" data-tooltip="Settings">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                    </button>
                 </div>
+            </div>
+        </aside>
 
-                <div class="home-gallery masonry" id="home-masonry">
-                    <!-- JS populated -->
+        <!-- MOBILE HEADER & 3D GLASS SLIDING MENU -->
+        <header class="mobile-header">
+            <div class="mobile-brand">
+                <span class="neon-dot"></span>
+                <span class="brand-name">AURA OS</span>
+            </div>
+            <button class="hamburger-trigger" id="mobile-menu-toggle" aria-label="Open Navigation Menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </header>
+
+        <div class="mobile-3d-menu" id="mobile-menu-drawer">
+            <div class="glass-drawer-backdrop"></div>
+            <div class="glass-drawer-content">
+                <div class="drawer-header">
+                    <h3>SYSTEM NAVIGATION</h3>
+                    <button class="drawer-close-btn" id="mobile-menu-close">&times;</button>
                 </div>
+                <nav class="mobile-nav-links">
+                    <button class="mobile-nav-item active" data-target="page-home">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+                        <span>Home System</span>
+                    </button>
+                    <button class="mobile-nav-item" data-target="page-about">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <span>Biography & Skills</span>
+                    </button>
+                    <button class="mobile-nav-item" data-target="page-education">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path></svg>
+                        <span>Educational Background</span>
+                    </button>
+                    <button class="mobile-nav-item" data-target="page-interests">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <span>Interests & Lifestyle</span>
+                    </button>
+                    <button class="mobile-nav-item" data-target="page-personal">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                        <span>Personal Notebook</span>
+                    </button>
+                </nav>
             </div>
-        </section>
-
-        <!-- ABOUT -->
-        <section id="about" class="page">
-            <div class="page-header">ABOUT</div>
-            <div class="bio-text">
-                <p>Multidisciplinary artist and engineer with a passion for immersive interfaces and emotional design.</p>
-            </div>
-            
-            <!-- Orbital Skills -->
-            <div class="orbital-skills" id="orbital-container">
-                <div class="center-point"></div>
-                <!-- JS adds orbiting items -->
-            </div>
-            
-            <div id="skill-detail" class="glass-card hidden">
-                <!-- Dynamic -->
-            </div>
-
-            <!-- Achievements -->
-            <div class="achievements-grid">
-                <!-- JS populated certificates -->
-            </div>
-        </section>
-
-        <!-- EDUCATION, INTERESTS, PERSONAL similar structure with their specific elements -->
-        <!-- Full details in CSS/JS below -->
-    </main>
-
-    <!-- Lightbox -->
-    <div id="modal" class="modal hidden">
-        <div class="modal-content">
-            <span class="close-modal">×</span>
-            <img id="modal-image" class="modal-media" alt="">
-            <video id="modal-video" class="modal-media" controls></video>
         </div>
-    </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
+        <!-- MAIN VIEWPORT PAGES CONTAINER -->
+        <main class="main-stage">
+
+            <!-- PAGE 1: HOME PAGE -->
+            <section id="page-home" class="app-page active">
+                <div class="home-hero-container">
+                    <!-- Giant Opacity Background Typography -->
+                    <div class="watermark-typography" aria-hidden="true">
+                        <span>CREATIVE ARCHITECT</span>
+                    </div>
+
+                    <div class="profile-hero-card">
+                        <!-- Continuous Floating Avatar Container -->
+                        <div class="floating-avatar-wrapper">
+                            <div class="avatar-glow-ring"></div>
+                            <img src="assets/images/profile-avatar.jpg" alt="Aura Executive Avatar" class="profile-avatar" loading="eager">
+                        </div>
+
+                        <h1 class="profile-title">ALEXANDER VANE</h1>
+                        <p class="profile-subtitle">Senior Full Stack Architect &amp; Dynamic Interaction Designer</p>
+
+                        <!-- 14 Premium 3D Social Icons -->
+                        <div class="social-grid-3d">
+                            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            </a>
+                            <a href="https://facebook.com" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                            </a>
+                            <a href="https://messenger.com" target="_blank" rel="noopener" class="social-btn" aria-label="Messenger">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                            </a>
+                            <a href="https://whatsapp.com" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                            </a>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                            </a>
+                            <a href="https://pinterest.com" target="_blank" rel="noopener" class="social-btn" aria-label="Pinterest">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 20l4-9"></path><path d="M10.7 13c.4 1.2 1.5 2 2.8 2 2 0 3.5-1.5 3.5-3.5 0-2.2-1.8-4-4-4-2.8 0-4.5 1.8-4.5 4.1 0 1.2.5 2.1 1.5 2.5"></path></svg>
+                            </a>
+                            <a href="https://tiktok.com" target="_blank" rel="noopener" class="social-btn" aria-label="TikTok">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                            </a>
+                            <a href="https://threads.net" target="_blank" rel="noopener" class="social-btn" aria-label="Threads">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><path d="M16 12v1.5a2.5 2.5 0 0 0 5 0V12a9 9 0 1 0-9 9"></path></svg>
+                            </a>
+                            <a href="https://tumblr.com" target="_blank" rel="noopener" class="social-btn" aria-label="Tumblr">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 17.5c-1.3 0-2.5-.5-2.5-2.5V10h4V7h-4V3h-3c0 2.5-1.8 4.2-4.5 4.5v2.5h2V15c0 3.5 2.2 5.5 5.5 5.5h2.5v-3h-1.5z"></path></svg>
+                            </a>
+                            <a href="https://bsky.app" target="_blank" rel="noopener" class="social-btn" aria-label="Bluesky">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4.5C10 2 4 1 2 6c0 5 3 7 6 6-4 1-5 4-3 7 3 4 7 1 7-2 0 3 4 6 7 2 2-3 1-6-3-7 3 1 6-1 6-6 0-5-6-4-8-1.5z"></path></svg>
+                            </a>
+                            <a href="mailto:alexander@aura-os.dev" class="social-btn" aria-label="Email">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            </a>
+                            <a href="https://github.com" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            </a>
+                            <a href="https://youtube.com" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+                            </a>
+                            <a href="https://aura-os.dev" target="_blank" rel="noopener" class="social-btn" aria-label="Official Website">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Instagram-Style Home Gallery -->
+                    <div class="home-feed-section">
+                        <div class="feed-header">
+                            <h2>FEATURED FEED</h2>
+                            <span class="feed-tag">@alexander.aura</span>
+                        </div>
+                        <div class="instagram-grid">
+                            <div class="insta-card image-type" data-media-type="image" data-src="assets/images/gallery-1.jpg" data-caption="Architecting spatial interfaces for the future.">
+                                <img src="assets/images/gallery-1-thumb.jpg" alt="Spatial Interface Design" loading="lazy">
+                                <div class="insta-overlay">
+                                    <span class="type-icon">📷</span>
+                                </div>
+                            </div>
+                            <div class="insta-card video-type" data-media-type="video" data-src="assets/videos/reel-1.mp4" data-caption="60FPS Smooth UI Engine Demo">
+                                <video src="assets/videos/reel-1-thumb.mp4" muted loop playsinline></video>
+                                <div class="insta-overlay">
+                                    <span class="type-icon">🎥</span>
+                                </div>
+                            </div>
+                            <div class="insta-card image-type" data-media-type="image" data-src="assets/images/gallery-2.jpg" data-caption="Cybernetic Minimalism Concept">
+                                <img src="assets/images/gallery-2-thumb.jpg" alt="Cybernetic Minimalism" loading="lazy">
+                                <div class="insta-overlay">
+                                    <span class="type-icon">📷</span>
+                                </div>
+                            </div>
+                            <div class="insta-card video-type" data-media-type="video" data-src="assets/videos/reel-2.mp4" data-caption="Orbital System Design Showcase">
+                                <video src="assets/videos/reel-2-thumb.mp4" muted loop playsinline></video>
+                                <div class="insta-overlay">
+                                    <span class="type-icon">🎬</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
