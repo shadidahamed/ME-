@@ -130,32 +130,45 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   // 4. BACKGROUND AUDIO MANAGER
   // ==========================================================================
+ // ==========================================================================
+  // 4. BACKGROUND AUDIO MANAGER (Auto-play on First Interaction)
+  // ==========================================================================
+  function startAudio() {
+    if (!state.audioPlaying && bgAudio) {
+      bgAudio.volume = 0.25; // Soft ambient volume
+      bgAudio.play().then(() => {
+        if (audioBtn) audioBtn.classList.remove('paused');
+        state.audioPlaying = true;
+      }).catch(err => {
+        console.log("Autoplay waiting for user gesture:", err);
+      });
+    }
+  }
+
+  // Attempt autoplay immediately (works if browser allows)
+  startAudio();
+
+  // Trigger autoplay on the user's very first click anywhere on the page
+  const enableAudioOnFirstClick = () => {
+    startAudio();
+    document.removeEventListener('click', enableAudioOnFirstClick);
+  };
+  document.addEventListener('click', enableAudioOnFirstClick);
+
+  // Manual toggle button handler
   if (audioBtn && bgAudio) {
-    audioBtn.addEventListener('click', () => {
+    audioBtn.addEventListener('click', (e) => {
+      // Prevent double triggering from the document click listener
+      e.stopPropagation(); 
+
       if (state.audioPlaying) {
         bgAudio.pause();
         audioBtn.classList.add('paused');
         state.audioPlaying = false;
       } else {
-        bgAudio.volume = 0.75; // Soft ambient volume
-        bgAudio.play().then(() => {
-          audioBtn.classList.remove('paused');
-          state.audioPlaying = true;
-        }).catch(err => console.log("Audio autoplay restricted:", err));
+        startAudio();
       }
     });
-  }
-
-  function pauseAudioForMedia() {
-    if (bgAudio && state.audioPlaying) {
-      bgAudio.pause();
-    }
-  }
-
-  function resumeAudioAfterMedia() {
-    if (bgAudio && state.audioPlaying) {
-      bgAudio.play();
-    }
   }
 
   // ==========================================================================
