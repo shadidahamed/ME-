@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const img = new Image();
     // Uses your profile image from assets
-    img.src = 'assets/images/profile.jpg';
+    img.src = '56798eb3-219b-46fd-9910-7a25dc6d18a5.jpeg';
 
     img.onload = () => {
       // Hidden canvas for off-screen pixel processing
