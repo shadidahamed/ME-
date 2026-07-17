@@ -226,17 +226,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Phone Copy Toast
-  const phoneBtn = document.getElementById('phone-copy-btn');
-  const phoneToast = document.getElementById('phone-toast');
-  if (phoneBtn && phoneToast) {
-    phoneBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText("01326162684");
-      phoneToast.classList.add('show');
-      setTimeout(() => phoneToast.classList.remove('show'), 3000);
-    });
-  }
+  // Copy phone number to clipboard & show glass toast on click
+const phoneBtn = document.getElementById('phone-copy-btn');
+const phoneToast = document.getElementById('phone-toast');
 
+if (phoneBtn && phoneToast) {
+  phoneBtn.addEventListener('click', () => {
+    const phoneNumber = "01326162684";
+    navigator.clipboard.writeText(phoneNumber).then(() => {
+      phoneToast.classList.add('show');
+      setTimeout(() => {
+        phoneToast.classList.remove('show');
+      }, 3000); // Hides after 3 seconds
+    }).catch(err => {
+      console.error('Failed to copy text: ', err);
+    });
+  });
+}
   // ==========================================================================
   // 7. 3D ORBITAL CIRCULAR SKILL SHOWCASE ENGINE (Vertical Tire Spin)
   // ==========================================================================
