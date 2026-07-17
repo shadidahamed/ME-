@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const width = 80;
 
 // Change the aspect multiplier (0.45) here to adjust generated row count/height
-const height = Math.floor(img.height * (width / img.width) * 0.45);
+const height = Math.floor(img.height * (width / img.width) * 0.65);
       canvas.width = width;
       canvas.height = height;
 
