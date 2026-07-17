@@ -1,846 +1,422 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <!-- Primary Meta Tags -->
-    <title>Aura OS | Next-Gen Premium Web Portfolio Application</title>
-    <meta name="title" content="Aura OS | Next-Gen Premium Web Portfolio Application">
-    <meta name="description" content="A futuristic, desktop-class interactive digital portfolio application featuring 3D animations, custom music player, orbital skill showcases, and interactive digital memories.">
-    <meta name="keywords" content="portfolio, fullstack developer, ui ux designer, web animation, interactive application, dark mode, glassmorphism">
-    <meta name="author" content="Aura Studio">
-    <meta name="theme-color" content="#050505">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="Futuristic Interactive Application Portfolio of SHADID AHAMED." />
+  <meta name="theme-color" content="#8B0000" />
+  
+  <!-- Open Graph / Meta -->
+  <meta property="og:title" content="SHADID AHAMED | Portfolio" />
+  <meta property="og:description" content="Senior Full Stack Web Developer & 3D Web Animation Expert" />
+  <meta property="og:type" content="website" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://aura-portfolio.app/">
-    <meta property="og:title" content="Aura OS | Next-Gen Web Portfolio">
-    <meta property="og:description" content="Futuristic desktop application-level portfolio built with pure HTML5, CSS3, and Vanilla JS.">
-    <meta property="og:image" content="assets/images/og-preview.jpg">
-
-    <!-- Twitter Cards -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://aura-portfolio.app/">
-    <meta property="twitter:title" content="Aura OS | Next-Gen Web Portfolio">
-    <meta property="twitter:description" content="Futuristic desktop application-level portfolio built with pure HTML5, CSS3, and Vanilla JS.">
-    <meta property="twitter:image" content="assets/images/og-preview.jpg">
-
-    <!-- Favicon & Web Manifest -->
-    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
-    <link rel="manifest" href="site.webmanifest">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="style.css">
+  <title>SHADID AHAMED | Application Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <!-- CUSTOM CURSOR (Desktop Only) -->
-    <div id="custom-cursor" class="cursor-dot" aria-hidden="true"></div>
-    <div id="custom-cursor-follower" class="cursor-ring" aria-hidden="true"></div>
+  <!-- Custom Cursor -->
+  <div id="cursor-dot" class="cursor-dot"></div>
+  <div id="cursor-ring" class="cursor-ring"></div>
 
-    <!-- BACKGROUND AMBIENT SOUND CONTROLLER -->
-    <audio id="ambient-audio" loop preload="auto">
-        <source src="assets/music/ambient-space.mp3" type="audio/mpeg">
-    </audio>
+  <!-- Audio Background -->
+  <audio id="bg-audio" loop preload="auto">
+    <source src="assets/music/ambient-bg.mp3" type="audio/mpeg" />
+  </audio>
 
-    <div class="audio-control-floating" id="audio-toggle-btn" role="button" aria-label="Toggle Ambient Audio" tabindex="0">
-        <div class="equalizer-bars">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-        <span class="audio-status-text">SOUND: OFF</span>
+  <!-- Left Sidebar (Desktop) -->
+  <aside class="sidebar" id="sidebar">
+    <button class="nav-btn active" data-page="home" aria-label="Home">
+      <svg class="icon-me" viewBox="0 0 24 24">
+        <path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/>
+      </svg>
+      <span class="btn-glow"></span>
+    </button>
+    <button class="nav-btn" data-page="about" aria-label="About Me">
+      <svg class="icon-figure" viewBox="0 0 24 24">
+        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+      </svg>
+      <span class="btn-glow"></span>
+    </button>
+    <button class="nav-btn" data-page="education" aria-label="Educational Background">
+      <svg class="icon-edu" viewBox="0 0 24 24">
+        <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+      </svg>
+      <span class="btn-glow"></span>
+    </button>
+    <button class="nav-btn" data-page="interests" aria-label="Interests">
+      <svg class="icon-star" viewBox="0 0 24 24">
+        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+      </svg>
+      <span class="btn-glow"></span>
+    </button>
+    <button class="nav-btn" data-page="personal" aria-label="Personal Life">
+      <svg class="icon-heart" viewBox="0 0 24 24">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </svg>
+      <span class="btn-glow"></span>
+    </button>
+  </aside>
+
+  <!-- Mobile Header & Toggle -->
+  <header class="mobile-header">
+    <button id="mobile-toggle" aria-label="Open Navigation">☰</button>
+  </header>
+
+  <!-- Mobile Glass Drawer -->
+  <div id="mobile-menu" class="mobile-drawer">
+    <div class="drawer-content">
+      <button class="drawer-btn active" data-page="home">ME</button>
+      <button class="drawer-btn" data-page="about">ABOUT MYSELF</button>
+      <button class="drawer-btn" data-page="education">EDUCATION</button>
+      <button class="drawer-btn" data-page="interests">INTERESTS</button>
+      <button class="drawer-btn" data-page="personal">PERSONAL LIFE</button>
     </div>
+  </div>
 
-    <!-- MAIN APP CONTAINER -->
-    <div id="app-viewport">
+  <!-- MAIN VIEWPORT CONTAINER -->
+  <main class="app-container">
 
-        <!-- LEFT SIDEBAR NAVIGATION (Desktop) -->
-        <aside class="sidebar-desktop" aria-label="Main Navigation">
-            <div class="sidebar-glass-panel">
-                <div class="brand-badge">
-                    <span class="neon-dot"></span>
-                </div>
-                
-                <nav class="nav-menu-desktop">
-                    <button class="nav-btn active" data-target="page-home" aria-label="Home" data-tooltip="Home">
-                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                        </svg>
-                    </button>
+    <!-- PAGE 1: HOME PAGE -->
+    <section id="page-home" class="page-view active">
+      <!-- Background Text Matrix & Code Face SVG -->
+      <div class="bg-typography">DEVELOPER • DESIGNER • ANIMATOR</div>
+      
+      <div class="code-face-bg">
+        <pre class="ascii-face">
+            g@M%@%%@N%Nw,,
+         ,M*|  ||*%gNM=]mM%g||%N,
+        p!'  '|  '|    '||jhlj%w
+       ,@L              ' '|j%M]%M
+      jj'  ,.wp@pw,          '''|%Wg
+    /{|||@@@@@@@@@pp.
+   ']@@@@@@@@@@@@@@@p
+   : |@@@@@@@@@@@@K%h *||mkr
+   j%M'    |jkk'   -nrn=|i
+   ! jrr*^            "! L'':!
+   j lp;,  ./ @@    ,;\nmy  "
+  i r @@@@@mMhM @@@@  *****M*,p ;,
+ | ]@%@@%HHHJg@M%%%%%H,jmgpmb%  j
+ ;;%%%%%K%@[.,n|:;;j%%k|k%%%',[
+ H%%%k%%%j%k||.,;;j;'||%ij}]@
+ "djjmkl,"]|[.,,,wwxw;|#kjk'
+  %;%km%%%%M|%%jkkii|||[
+  kjj%%kkkl'||||||j|||'
+   |jm%H@@@@b%%kkmk%i!|,[
+   @p|j%%%%jkk||j'||*' ;[
+  |]@%@g| ' ' ... ,;j%k
+  @@@@@mgmp;....;;jj%%k%
+  @@@@@@@@%kgki|!jjjj%k%@ .
+ .^[ '' %@@@@HH%b%k[illljkjj%%%% ;
+=[ ' .  %HH%%%%H%Gskilljjj%kk" .
+        </pre>
+      </div>
 
-                    <button class="nav-btn" data-target="page-about" aria-label="About Person" data-tooltip="About">
-                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
-                        </svg>
-                    </button>
+      <div class="home-hero">
+        <div class="profile-avatar-container floating-avatar">
+          <img src="assets/images/shadid-profile.jpeg" alt="Shadid Ahamed" class="profile-img" />
+        </div>
 
-                    <button class="nav-btn" data-target="page-education" aria-label="Educational Background" data-tooltip="Education">
-                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-                        </svg>
-                    </button>
+        <h1 class="dynamic-name">
+          <span class="f-bold">SHADID</span> 
+          <span class="f-italic">AHAMED</span>
+        </h1>
 
-                    <button class="nav-btn" data-target="page-interests" aria-label="Interests & Hobbies" data-tooltip="Interests">
-                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                        </svg>
-                    </button>
+        <p class="hero-desc">
+          Senior Full Stack Web Developer • UI/UX Designer • Motion & 3D Web Animation Expert
+        </p>
 
-                    <button class="nav-btn" data-target="page-personal" aria-label="Personal Life & Notebook" data-tooltip="Personal Life">
-                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                        </svg>
-                    </button>
-                </nav>
+        <!-- 3D Social Buttons (3 Rows x 5 Columns) -->
+        <div class="social-grid">
+          <!-- Row 1 -->
+          <a href="https://instagram.com" target="_blank" class="social-btn glass-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://facebook.com" target="_blank" class="social-btn glass-btn" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://messenger.com" target="_blank" class="social-btn glass-btn" aria-label="Messenger">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.082.3 2.23.464 3.443.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26 6.559-6.96 3.127 3.26 5.89-3.26-6.558 6.96z"/></svg>
+          </a>
+          <button class="social-btn glass-btn phone-btn" id="phone-trigger" aria-label="Phone Number">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          </button>
+          <a href="https://linkedin.com" target="_blank" class="social-btn glass-btn" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </a>
 
-                <div class="sidebar-footer">
-                    <button class="nav-btn system-settings-btn" id="settings-trigger" aria-label="Settings" data-tooltip="Settings">
-                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="3"></circle>
-                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                        </svg>
-                    </button>
-                </div>
+          <!-- Row 2 -->
+          <a href="https://pinterest.com" target="_blank" class="social-btn glass-btn" aria-label="Pinterest">
+            <svg viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.372-12 12 0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146 1.124.347 2.317.535 3.554.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="https://tiktok.com" target="_blank" class="social-btn glass-btn" aria-label="TikTok">
+            <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.82.56-1.36 1.52-1.36 2.51.01 1.04.53 2.05 1.38 2.62.92.62 2.13.72 3.13.29.98-.41 1.71-1.33 1.83-2.38.07-.86.03-1.72.03-2.58V.02z"/></svg>
+          </a>
+          <a href="https://threads.net" target="_blank" class="social-btn glass-btn" aria-label="Threads">
+            <svg viewBox="0 0 24 24"><path d="M12 21.5c-5.2 0-9.5-4.3-9.5-9.5S6.8 2.5 12 2.5s9.5 4.3 9.5 9.5c0 3.2-1.6 6.1-4.2 7.7l-1.3-1.8c2.1-1.3 3.4-3.6 3.4-6.1 0-4.1-3.3-7.5-7.4-7.5S4.6 7.7 4.6 11.8s3.3 7.5 7.4 7.5c1.8 0 3.5-.6 4.8-1.8l1.4 1.5C16.6 20.6 14.4 21.5 12 21.5z"/></svg>
+          </a>
+          <a href="https://tumblr.com" target="_blank" class="social-btn glass-btn" aria-label="Tumblr">
+            <svg viewBox="0 0 24 24"><path d="M14.563 24c-5.093 0-7.09-3.476-7.09-6.611v-7.806h-2.106v-3.702c3.308-.82 4.464-3.467 4.708-5.881h3.918v5.067h4.08v4.516h-4.08v6.862c0 1.688.756 2.528 2.19 2.528 1.03 0 1.961-.303 2.568-.621l1.192 3.843c-.98.66-2.855 1.605-5.38 1.605z"/></svg>
+          </a>
+          <a href="https://bsky.app" target="_blank" class="social-btn glass-btn" aria-label="Bluesky">
+            <svg viewBox="0 0 24 24"><path d="M12 10.8c-2.52-3.8-6.42-6.55-9.12-6.8-2.7-.25-2.88 1.8-2.88 2.7 0 5.4 3.6 11.7 12 11.7 8.4 0 12-6.3 12-11.7 0-.9-.18-2.95-2.88-2.7-2.7.25-6.6 3-9.12 6.8z"/></svg>
+          </a>
+
+          <!-- Row 3 -->
+          <a href="mailto:shadid@example.com" class="social-btn glass-btn" aria-label="Email">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </a>
+          <a href="https://github.com" target="_blank" class="social-btn glass-btn" aria-label="GitHub">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+          <a href="https://youtube.com" target="_blank" class="social-btn glass-btn" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <a href="https://shadid.dev" target="_blank" class="social-btn glass-btn" aria-label="Website">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm8.836 11h-4.223c-.114-2.583-.75-4.981-1.785-6.932A9.972 9.972 0 0 1 20.836 11zM12 2.054c1.248 1.838 2.039 4.258 2.2 6.946H9.8c.161-2.688.952-5.108 2.2-6.946zm-5.828 2.014c-1.035 1.951-1.671 4.349-1.785 6.932H.164a9.972 9.972 0 0 1 6.008-6.932zM.164 13h4.223c.114 2.583.75 4.981 1.785 6.932A9.972 9.972 0 0 1 .164 13zm11.836 8.946c-1.248-1.838-2.039-4.258-2.2-6.946h4.4c-.161 2.688-.952 5.108-2.2 6.946zm5.828-2.014c1.035-1.951 1.671-4.349 1.785-6.932h4.223a9.972 9.972 0 0 1-6.008 6.932z"/></svg>
+          </a>
+        </div>
+
+        <!-- Phone Dynamic Display -->
+        <div id="phone-display" class="phone-tooltip hidden">Phone: 01326162684</div>
+      </div>
+
+      <!-- Instagram-Style Gallery Section -->
+      <section class="home-gallery-wrapper">
+        <div class="gallery-tabs">
+          <button class="tab-btn active" data-tab="images">Images</button>
+          <button class="tab-btn" data-tab="videos">Videos</button>
+          <button class="tab-btn" data-tab="reels">Reels</button>
+        </div>
+
+        <!-- Tab Content: Images -->
+        <div class="gallery-grid tab-content active" id="tab-images">
+          <div class="grid-card media-card" data-src="assets/images/gallery1.jpg" data-type="image">
+            <img src="assets/images/gallery1.jpg" alt="Gallery 1" />
+          </div>
+          <div class="grid-card media-card" data-src="assets/images/gallery2.jpg" data-type="image">
+            <img src="assets/images/gallery2.jpg" alt="Gallery 2" />
+          </div>
+          <div class="grid-card media-card" data-src="assets/images/gallery3.jpg" data-type="image">
+            <img src="assets/images/gallery3.jpg" alt="Gallery 3" />
+          </div>
+        </div>
+
+        <!-- Tab Content: Videos -->
+        <div class="gallery-grid tab-content" id="tab-videos">
+          <div class="grid-card media-card" data-src="assets/videos/video1.mp4" data-type="video">
+            <div class="video-thumb-overlay">▶ Play Video</div>
+          </div>
+        </div>
+
+        <!-- Tab Content: Reels -->
+        <div class="gallery-grid tab-content" id="tab-reels">
+          <div class="grid-card media-card" data-src="assets/videos/reel1.mp4" data-type="video">
+            <div class="video-thumb-overlay">🎬 Reel</div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- PAGE 2: ABOUT MYSELF -->
+    <section id="page-about" class="page-view">
+      <div class="about-header">
+        <h1 class="huge-squeeze-name">SHADID AHAMED</h1>
+      </div>
+
+      <div class="about-grid">
+        <article class="bio-section glass-card">
+          <h2>Professional Biography</h2>
+          <p>
+            With years of experience blending Full Stack Architecture, 3D Web Dynamics, and UI/UX Mastery, I design digital environments that act as extension applications. Focused on 60fps performance and cutting-edge visual experiences.
+          </p>
+        </article>
+
+        <!-- 3D Orbital Carousel Skills Section -->
+        <section class="skills-orbital-wrapper glass-card">
+          <h2>Core Skills Orbit</h2>
+          <div class="orbital-container" id="orbital-container">
+            <div class="pointer-arrow">▲</div>
+            <div class="orbit-center-label" id="orbit-skill-title">Select Skill</div>
+            
+            <!-- 11 Skill Items positioned in 360 rotation JS -->
+            <div class="orbit-item" data-index="0" data-name="JavaScript" data-desc="Vanilla JS ES6+, Async Engine, DOM & Canvas operations."><img src="assets/images/skill-js.png" alt="JS"/></div>
+            <div class="orbit-item" data-index="1" data-name="CSS3 / SASS" data-desc="Advanced layout, custom hardware-accelerated animations."><img src="assets/images/skill-css.png" alt="CSS"/></div>
+            <div class="orbit-item" data-index="2" data-name="HTML5" data-desc="Semantic Web, Accessibility, Canvas rendering."><img src="assets/images/skill-html.png" alt="HTML"/></div>
+            <div class="orbit-item" data-index="3" data-name="UI/UX Design" data-desc="Prototyping, Glassmorphism, Application Flow design."><img src="assets/images/skill-uiux.png" alt="UIUX"/></div>
+            <div class="orbit-item" data-index="4" data-name="WebGL Math" data-desc="Native Shader math, Matrices, 3D Transformations."><img src="assets/images/skill-webgl.png" alt="WebGL"/></div>
+            <div class="orbit-item" data-index="5" data-name="Node.js" data-desc="Server architecture, RESTful endpoints, Socket engines."><img src="assets/images/skill-node.png" alt="Node"/></div>
+            <div class="orbit-item" data-index="6" data-name="System Architecture" data-desc="Scalable web apps, micro-frontend structures."><img src="assets/images/skill-arch.png" alt="Arch"/></div>
+            <div class="orbit-item" data-index="7" data-name="Motion Graphics" data-desc="Keyframe physics, timing curves, UI choreography."><img src="assets/images/skill-motion.png" alt="Motion"/></div>
+            <div class="orbit-item" data-index="8" data-name="Performance Opt." data-desc="FPS Locking, memory leak auditing, critical path delivery."><img src="assets/images/skill-perf.png" alt="Perf"/></div>
+            <div class="orbit-item" data-index="9" data-name="Security" data-desc="App layer security, CSP, sanitized state flows."><img src="assets/images/skill-sec.png" alt="Sec"/></div>
+            <div class="orbit-item" data-index="10" data-name="Database" data-desc="Relational & Document database structure design."><img src="assets/images/skill-db.png" alt="DB"/></div>
+          </div>
+
+          <!-- Ghost Slide Description Container -->
+          <div id="ghost-skill-card" class="ghost-card hidden">
+            <h3 id="ghost-title">Skill Title</h3>
+            <p id="ghost-desc">Skill description detail goes here...</p>
+          </div>
+        </section>
+      </div>
+
+      <!-- Achievements Section (21 PDF Showcase) -->
+      <section class="achievements-section">
+        <h2>Achievements & Credentials</h2>
+        <div class="cert-grid" id="cert-grid">
+          <!-- Dynamically Rendered 21 Cert Cards in Script -->
+        </div>
+      </section>
+
+      <!-- Family Tree Section -->
+      <section class="family-tree-section glass-card">
+        <h2>Ancestral Lineage</h2>
+        <div class="tree-container">
+          <!-- Father Side (6 Generations) -->
+          <div class="tree-side tree-father">
+            <h3>Father's Lineage (6 Generations)</h3>
+            <ul class="tree-node-root" id="father-tree"></ul>
+          </div>
+          <!-- Mother Side (4 Generations) -->
+          <div class="tree-side tree-mother">
+            <h3>Mother's Lineage (4 Generations)</h3>
+            <ul class="tree-node-root" id="mother-tree"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- My Evaluation Masonry -->
+      <section class="evaluation-section">
+        <h2>My Evaluation</h2>
+        <div class="masonry-grid" id="masonry-grid">
+          <div class="masonry-item media-card" data-src="assets/images/eval1.jpg" data-type="image"><img src="assets/images/eval1.jpg" alt="Eval 1"/></div>
+          <div class="masonry-item media-card" data-src="assets/images/eval2.jpg" data-type="image"><img src="assets/images/eval2.jpg" alt="Eval 2"/></div>
+          <div class="masonry-item media-card" data-src="assets/images/eval3.jpg" data-type="image"><img src="assets/images/eval3.jpg" alt="Eval 3"/></div>
+        </div>
+      </section>
+
+      <!-- My Personal Videos Section -->
+      <section class="personal-videos-section glass-card">
+        <h2>Personal Motion Showcase</h2>
+        <div class="circular-video-orbit" id="circular-video-orbit">
+          <div class="video-thumb-card media-card" data-src="assets/videos/personal1.mp4" data-type="video">
+            <img src="assets/images/vthumb1.jpg" alt="Thumb 1" />
+          </div>
+          <div class="video-thumb-card media-card" data-src="assets/videos/personal2.mp4" data-type="video">
+            <img src="assets/images/vthumb2.jpg" alt="Thumb 2" />
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- PAGE 3: EDUCATIONAL BACKGROUND -->
+    <section id="page-education" class="page-view">
+      <div class="edu-timeline">
+        <!-- School -->
+        <article class="edu-card glass-card">
+          <h2>Secondary School</h2>
+          <img src="assets/images/school.jpg" alt="School" class="edu-img"/>
+          <p><strong>Timeline:</strong> 2012 - 2018</p>
+          <p><strong>Location:</strong> Main Academic Campus</p>
+          <p>Memories of early programming explorations and foundation building.</p>
+        </article>
+
+        <!-- College -->
+        <article class="edu-card glass-card">
+          <h2>Higher Secondary College</h2>
+          <img src="assets/images/college.jpg" alt="College" class="edu-img"/>
+          <p><strong>Timeline:</strong> 2018 - 2020</p>
+          <p><strong>Group Photo:</strong></p>
+          <img src="assets/images/college-group.jpg" alt="College Group" class="edu-img"/>
+        </article>
+
+        <!-- University & 3D Glass Dice Slider -->
+        <article class="edu-card glass-card">
+          <h2>University</h2>
+          <p><strong>Timeline:</strong> 2020 - 2024</p>
+          <p><strong>Group Photo:</strong></p>
+          <img src="assets/images/uni-group.jpg" alt="University Group" class="edu-img"/>
+
+          <h3>University 3D Dice Showcase</h3>
+          <div class="dice-wrapper">
+            <div class="dice-cube" id="dice-cube">
+              <div class="dice-face face-1"><img src="assets/images/proj1.jpg" alt="P1"/></div>
+              <div class="dice-face face-2"><img src="assets/images/proj2.jpg" alt="P2"/></div>
+              <div class="dice-face face-3"><img src="assets/images/proj3.jpg" alt="P3"/></div>
+              <div class="dice-face face-4"><img src="assets/images/proj4.jpg" alt="P4"/></div>
             </div>
-        </aside>
+          </div>
+        </article>
+      </div>
 
-        <!-- MOBILE HEADER & 3D GLASS SLIDING MENU -->
-        <header class="mobile-header">
-            <div class="mobile-brand">
-                <span class="neon-dot"></span>
-                <span class="brand-name">AURA OS</span>
-            </div>
-            <button class="hamburger-trigger" id="mobile-menu-toggle" aria-label="Open Navigation Menu">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
-        </header>
+      <!-- Projects Section -->
+      <section class="projects-section">
+        <h2>Featured Systems & Applications</h2>
+        <div class="project-grid">
+          <div class="project-card glass-card">
+            <img src="assets/images/proj1.jpg" alt="Project 1"/>
+            <h3>3D Engine Web Kernel</h3>
+            <p>Native JavaScript software rendering engine operating within 2D Canvas context.</p>
+          </div>
+        </div>
+      </section>
+    </section>
 
-        <div class="mobile-3d-menu" id="mobile-menu-drawer">
-            <div class="glass-drawer-backdrop"></div>
-            <div class="glass-drawer-content">
-                <div class="drawer-header">
-                    <h3>SYSTEM NAVIGATION</h3>
-                    <button class="drawer-close-btn" id="mobile-menu-close">&times;</button>
-                </div>
-                <nav class="mobile-nav-links">
-                    <button class="mobile-nav-item active" data-target="page-home">
-                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-                        <span>Home System</span>
-                    </button>
-                    <button class="mobile-nav-item" data-target="page-about">
-                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                        <span>Biography & Skills</span>
-                    </button>
-                    <button class="mobile-nav-item" data-target="page-education">
-                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path></svg>
-                        <span>Educational Background</span>
-                    </button>
-                    <button class="mobile-nav-item" data-target="page-interests">
-                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                        <span>Interests & Lifestyle</span>
-                    </button>
-                    <button class="mobile-nav-item" data-target="page-personal">
-                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                        <span>Personal Notebook</span>
-                    </button>
-                </nav>
-            </div>
+    <!-- PAGE 4: INTERESTS -->
+    <section id="page-interests" class="page-view">
+      <h2>Hobbies & Passions</h2>
+      <div class="interests-grid">
+        <div class="interest-card glass-card">
+          <img src="assets/images/drawing.jpg" alt="Drawing"/>
+          <h3>Drawing</h3>
+          <p>Vector visual arts and algorithmic design sketch generation.</p>
+        </div>
+        <div class="interest-card glass-card">
+          <img src="assets/images/running.jpg" alt="Running"/>
+          <h3>Running</h3>
+          <p>Endurance physical training and focus maintenance.</p>
+        </div>
+        <div class="interest-card glass-card">
+          <img src="assets/images/music.jpg" alt="Music"/>
+          <h3>Music</h3>
+          <p>Ambient sound design and procedural melody synthesis.</p>
+        </div>
+        <div class="interest-card glass-card">
+          <img src="assets/images/visiting.jpg" alt="Visiting"/>
+          <h3>Visiting</h3>
+          <p>Exploring global design aesthetics and architectural structures.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 5: PERSONAL LIFE (Notebook Style) -->
+    <section id="page-personal" class="page-view">
+      <div class="notebook-container glass-card">
+        <div class="notebook-header">
+          <h2 class="handwritten-heading">Personal Life Notes</h2>
+          <div class="page-controls">
+            <button id="prev-page" class="glass-btn">← Prev</button>
+            <span id="notebook-page-num">Page 1</span>
+            <button id="next-page" class="glass-btn">Next →</button>
+          </div>
         </div>
 
-        <!-- MAIN VIEWPORT PAGES CONTAINER -->
-        <main class="main-stage">
-
-            <!-- PAGE 1: HOME PAGE -->
-            <section id="page-home" class="app-page active">
-                <div class="home-hero-container">
-                    <!-- Giant Opacity Background Typography -->
-                    <div class="watermark-typography" aria-hidden="true">
-                        <span>CREATIVE ARCHITECT</span>
-                    </div>
-
-                    <div class="profile-hero-card">
-                        <!-- Continuous Floating Avatar Container -->
-                        <div class="floating-avatar-wrapper">
-                            <div class="avatar-glow-ring"></div>
-                            <img src="assets/images/profile-avatar.jpg" alt="Aura Executive Avatar" class="profile-avatar" loading="eager">
-                        </div>
-
-                        <h1 class="profile-title">ALEXANDER VANE</h1>
-                        <p class="profile-subtitle">Senior Full Stack Architect &amp; Dynamic Interaction Designer</p>
-
-                        <!-- 14 Premium 3D Social Icons -->
-                        <div class="social-grid-3d">
-                            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                            </a>
-                            <a href="https://facebook.com" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                            </a>
-                            <a href="https://messenger.com" target="_blank" rel="noopener" class="social-btn" aria-label="Messenger">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                            </a>
-                            <a href="https://whatsapp.com" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                            </a>
-                            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                            </a>
-                            <a href="https://pinterest.com" target="_blank" rel="noopener" class="social-btn" aria-label="Pinterest">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 20l4-9"></path><path d="M10.7 13c.4 1.2 1.5 2 2.8 2 2 0 3.5-1.5 3.5-3.5 0-2.2-1.8-4-4-4-2.8 0-4.5 1.8-4.5 4.1 0 1.2.5 2.1 1.5 2.5"></path></svg>
-                            </a>
-                            <a href="https://tiktok.com" target="_blank" rel="noopener" class="social-btn" aria-label="TikTok">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
-                            </a>
-                            <a href="https://threads.net" target="_blank" rel="noopener" class="social-btn" aria-label="Threads">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><path d="M16 12v1.5a2.5 2.5 0 0 0 5 0V12a9 9 0 1 0-9 9"></path></svg>
-                            </a>
-                            <a href="https://tumblr.com" target="_blank" rel="noopener" class="social-btn" aria-label="Tumblr">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 17.5c-1.3 0-2.5-.5-2.5-2.5V10h4V7h-4V3h-3c0 2.5-1.8 4.2-4.5 4.5v2.5h2V15c0 3.5 2.2 5.5 5.5 5.5h2.5v-3h-1.5z"></path></svg>
-                            </a>
-                            <a href="https://bsky.app" target="_blank" rel="noopener" class="social-btn" aria-label="Bluesky">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4.5C10 2 4 1 2 6c0 5 3 7 6 6-4 1-5 4-3 7 3 4 7 1 7-2 0 3 4 6 7 2 2-3 1-6-3-7 3 1 6-1 6-6 0-5-6-4-8-1.5z"></path></svg>
-                            </a>
-                            <a href="mailto:alexander@aura-os.dev" class="social-btn" aria-label="Email">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                            </a>
-                            <a href="https://github.com" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                            </a>
-                            <a href="https://youtube.com" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
-                            </a>
-                            <a href="https://aura-os.dev" target="_blank" rel="noopener" class="social-btn" aria-label="Official Website">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Instagram-Style Home Gallery -->
-                    <div class="home-feed-section">
-                        <div class="feed-header">
-                            <h2>FEATURED FEED</h2>
-                            <span class="feed-tag">@alexander.aura</span>
-                        </div>
-                        <div class="instagram-grid">
-                            <div class="insta-card image-type" data-media-type="image" data-src="assets/images/gallery-1.jpg" data-caption="Architecting spatial interfaces for the future.">
-                                <img src="assets/images/gallery-1-thumb.jpg" alt="Spatial Interface Design" loading="lazy">
-                                <div class="insta-overlay">
-                                    <span class="type-icon">📷</span>
-                                </div>
-                            </div>
-                            <div class="insta-card video-type" data-media-type="video" data-src="assets/videos/reel-1.mp4" data-caption="60FPS Smooth UI Engine Demo">
-                                <video src="assets/videos/reel-1-thumb.mp4" muted loop playsinline></video>
-                                <div class="insta-overlay">
-                                    <span class="type-icon">🎥</span>
-                                </div>
-                            </div>
-                            <div class="insta-card image-type" data-media-type="image" data-src="assets/images/gallery-2.jpg" data-caption="Cybernetic Minimalism Concept">
-                                <img src="assets/images/gallery-2-thumb.jpg" alt="Cybernetic Minimalism" loading="lazy">
-                                <div class="insta-overlay">
-                                    <span class="type-icon">📷</span>
-                                </div>
-                            </div>
-                            <div class="insta-card video-type" data-media-type="video" data-src="assets/videos/reel-2.mp4" data-caption="Orbital System Design Showcase">
-                                <video src="assets/videos/reel-2-thumb.mp4" muted loop playsinline></video>
-                                <div class="insta-overlay">
-                                    <span class="type-icon">🎬</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- PAGE 2: ABOUT PAGE -->
-            <section id="page-about" class="app-page">
-                <div class="page-container scrollable-glass-container">
-                    
-                    <!-- Billboard Style Name & Bio -->
-                    <div class="billboard-header">
-                        <h1 class="billboard-title">ALEXANDER VANE</h1>
-                        <div class="billboard-subtitle-badge">FULL STACK ARCHITECT &amp; UI/UX CREATIVE DIRECTOR</div>
-                    </div>
-
-                    <div class="bio-glass-card">
-                        <p class="bio-paragraph">
-                            I operate at the intersection of high-performance backend engineering, GPU-accelerated web graphics, and human-centric interface aesthetics. With over a decade of domain expertise, I build software experiences that blur the line between desktop-class applications and web platforms.
-                        </p>
-                    </div>
-
-                    <!-- 3D ORBITAL SKILLS SHOWCASE -->
-                    <div class="skills-orbital-section">
-                        <div class="section-title-wrap">
-                            <h2>TECHNICAL CAPABILITIES</h2>
-                            <p class="section-desc">Orbital Skill Matrix • Auto-rotates every 3s</p>
-                        </div>
-
-                        <div class="orbital-stage" id="orbital-stage">
-                            <!-- Fixed Arrow Pointer -->
-                            <div class="orbital-pointer-arrow">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-                            </div>
-
-                            <!-- Rotational Hub Ring -->
-                            <div class="orbital-ring" id="orbital-ring">
-                                <div class="skill-node active" data-skill-id="0" data-name="Full Stack Systems" data-desc="Architecting ultra-scalable node clusters, real-time WebSockets, and high-concurrency microservices with sub-millisecond latency.">
-                                    <div class="node-inner"><img src="assets/images/skills/fullstack.svg" alt="Full Stack"></div>
-                                </div>
-                                <div class="skill-node" data-skill-id="1" data-name="UI/UX Engineering" data-desc="Crafting pixel-perfect interface design systems inspired by Apple precision and Framer micro-interactions.">
-                                    <div class="node-inner"><img src="assets/images/skills/uiux.svg" alt="UI/UX"></div>
-                                </div>
-                                <div class="skill-node" data-skill-id="2" data-name="WebGL & Shader Motion" data-desc="Writing custom GLSL shaders, 60fps canvas visualizers, and spatial web animations using pure mathematical transformations.">
-                                    <div class="node-inner"><img src="assets/images/skills/webgl.svg" alt="WebGL"></div>
-                                </div>
-                                <div class="skill-node" data-skill-id="3" data-name="Motion Graphics" data-desc="Producing broadcast-grade motion design, keyframe kinetics, and liquid smooth UI physics transitions.">
-                                    <div class="node-inner"><img src="assets/images/skills/motion.svg" alt="Motion"></div>
-                                </div>
-                                <div class="skill-node" data-skill-id="4" data-name="Native Web APIs" data-desc="Mastering raw DOM operations, Web Audio API, IntersectionObserver, and hardware-accelerated CSS transforms without dependencies.">
-                                    <div class="node-inner"><img src="assets/images/skills/vanillajs.svg" alt="Vanilla JS"></div>
-                                </div>
-                            </div>
-
-                            <!-- Active Skill Title Overlay -->
-                            <div class="orbital-center-label">
-                                <span id="active-skill-title">Full Stack Systems</span>
-                            </div>
-                        </div>
-
-                        <!-- Enlarged Skill Description Glass Box -->
-                        <div class="skill-detail-glass" id="skill-detail-box">
-                            <h3 id="skill-box-title">Full Stack Systems</h3>
-                            <p id="skill-box-desc">Architecting ultra-scalable node clusters, real-time WebSockets, and high-concurrency microservices with sub-millisecond latency.</p>
-                            <span class="click-hint">Click active node to toggle expanded view</span>
-                        </div>
-                    </div>
-
-                    <!-- ACHIEVEMENTS / CERTIFICATES -->
-                    <div class="achievements-section">
-                        <div class="section-title-wrap">
-                            <h2>CERTIFICATIONS &amp; HONORS</h2>
-                        </div>
-                        <div class="certificates-grid">
-                            <div class="cert-card">
-                                <div class="cert-preview-wrapper">
-                                    <img src="assets/images/cert-1-preview.jpg" alt="Master Systems Architect Certificate" loading="lazy">
-                                    <div class="cert-badge">AWS / Cloud</div>
-                                </div>
-                                <div class="cert-info">
-                                    <h3>Master Systems Architect</h3>
-                                    <p>AWS Certified Solutions Architect – Professional Tier Qualification</p>
-                                    <div class="cert-actions">
-                                        <button class="cert-btn pdf-open-btn" data-pdf="assets/pdf/aws-certified.pdf">Open PDF</button>
-                                        <a href="assets/pdf/aws-certified.pdf" download class="cert-btn pdf-download-btn">Download</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="cert-card">
-                                <div class="cert-preview-wrapper">
-                                    <img src="assets/images/cert-2-preview.jpg" alt="UI/UX Design Master Certificate" loading="lazy">
-                                    <div class="cert-badge">Design Systems</div>
-                                </div>
-                                <div class="cert-info">
-                                    <h3>Senior UX Systems Lead</h3>
-                                    <p>International Interaction Design &amp; Accessibility Certification</p>
-                                    <div class="cert-actions">
-                                        <button class="cert-btn pdf-open-btn" data-pdf="assets/pdf/ux-lead.pdf">Open PDF</button>
-                                        <a href="assets/pdf/ux-lead.pdf" download class="cert-btn pdf-download-btn">Download</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FAMILY TREE BLOODLINE (3-4 Generations) -->
-                    <div class="family-tree-section">
-                        <div class="section-title-wrap">
-                            <h2>HERITAGE &amp; BLOODLINE</h2>
-                            <p class="section-desc">Interactive Generational Tree Structure</p>
-                        </div>
-
-                        <div class="tree-container">
-                            <!-- Father Side -->
-                            <div class="bloodline-column father-line">
-                                <h3 class="line-header">Paternal Lineage (Father)</h3>
-                                <div class="tree-branch">
-                                    <!-- Generation 1 -->
-                                    <div class="tree-node gen-1" data-node="f-gen1">
-                                        <div class="node-card">
-                                            <img src="assets/images/family/paternal-g1.jpg" alt="Paternal Great Grandfather">
-                                            <div class="node-meta">
-                                                <span class="node-relation">Great Grandfather</span>
-                                                <span class="node-name">Arthur Vane Sr.</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="connector-line vertical"></div>
-                                    <!-- Generation 2 -->
-                                    <div class="tree-node gen-2" data-node="f-gen2">
-                                        <div class="node-card">
-                                            <img src="assets/images/family/paternal-g2.jpg" alt="Paternal Grandfather">
-                                            <div class="node-meta">
-                                                <span class="node-relation">Grandfather</span>
-                                                <span class="node-name">Edward Vane</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="connector-line vertical"></div>
-                                    <!-- Generation 3 -->
-                                    <div class="tree-node gen-3" data-node="f-gen3">
-                                        <div class="node-card highlight">
-                                            <img src="assets/images/family/father.jpg" alt="Father">
-                                            <div class="node-meta">
-                                                <span class="node-relation">Father</span>
-                                                <span class="node-name">Marcus Vane</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="line-divider-glowing"></div>
-
-                            <!-- Mother Side -->
-                            <div class="bloodline-column mother-line">
-                                <h3 class="line-header">Maternal Lineage (Mother)</h3>
-                                <div class="tree-branch">
-                                    <!-- Generation 1 -->
-                                    <div class="tree-node gen-1" data-node="m-gen1">
-                                        <div class="node-card">
-                                            <img src="assets/images/family/maternal-g1.jpg" alt="Maternal Great Grandfather">
-                                            <div class="node-meta">
-                                                <span class="node-relation">Great Grandfather</span>
-                                                <span class="node-name">Harrison Sterling</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="connector-line vertical"></div>
-                                    <!-- Generation 2 -->
-                                    <div class="tree-node gen-2" data-node="m-gen2">
-                                        <div class="node-card">
-                                            <img src="assets/images/family/maternal-g2.jpg" alt="Maternal Grandmother">
-                                            <div class="node-meta">
-                                                <span class="node-relation">Grandmother</span>
-                                                <span class="node-name">Clara Sterling</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="connector-line vertical"></div>
-                                    <!-- Generation 3 -->
-                                    <div class="tree-node gen-3" data-node="m-gen3">
-                                        <div class="node-card highlight">
-                                            <img src="assets/images/family/mother.jpg" alt="Mother">
-                                            <div class="node-meta">
-                                                <span class="node-relation">Mother</span>
-                                                <span class="node-name">Elena Sterling Vane</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- MASONRY PHOTO GALLERY -->
-                    <div class="photo-gallery-section">
-                        <div class="section-title-wrap">
-                            <h2>VISUAL MEMOIRS</h2>
-                            <p class="section-desc">Masonry Photography Collection</p>
-                        </div>
-                        <div class="masonry-grid">
-                            <div class="masonry-item" data-full="assets/images/gallery/photo-1.jpg">
-                                <img src="assets/images/gallery/photo-1-thumb.jpg" alt="Architectural Study" loading="lazy">
-                            </div>
-                            <div class="masonry-item height-tall" data-full="assets/images/gallery/photo-2.jpg">
-                                <img src="assets/images/gallery/photo-2-thumb.jpg" alt="Cyberpunk Neon City" loading="lazy">
-                            </div>
-                            <div class="masonry-item" data-full="assets/images/gallery/photo-3.jpg">
-                                <img src="assets/images/gallery/photo-3-thumb.jpg" alt="Minimalist Workspace Setup" loading="lazy">
-                            </div>
-                            <div class="masonry-item height-wide" data-full="assets/images/gallery/photo-4.jpg">
-                                <img src="assets/images/gallery/photo-4-thumb.jpg" alt="Tokyo Night Lights" loading="lazy">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ROTATIONAL VIDEO SECTION -->
-                    <div class="video-showcase-section">
-                        <div class="section-title-wrap">
-                            <h2>CINEMATIC REELS</h2>
-                            <p class="section-desc">Circular Carousel • Click thumbnail to watch in modal</p>
-                        </div>
-                        <div class="video-carousel-stage">
-                            <div class="video-ring" id="video-ring">
-                                <div class="video-card-thumb" data-video-src="assets/videos/cinematic-1.mp4">
-                                    <img src="assets/images/video-thumb-1.jpg" alt="Cinematic Reel 1">
-                                    <div class="play-overlay"><span class="play-icon">▶</span></div>
-                                </div>
-                                <div class="video-card-thumb" data-video-src="assets/videos/cinematic-2.mp4">
-                                    <img src="assets/images/video-thumb-2.jpg" alt="Cinematic Reel 2">
-                                    <div class="play-overlay"><span class="play-icon">▶</span></div>
-                                </div>
-                                <div class="video-card-thumb" data-video-src="assets/videos/cinematic-3.mp4">
-                                    <img src="assets/images/video-thumb-3.jpg" alt="Cinematic Reel 3">
-                                    <div class="play-overlay"><span class="play-icon">▶</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- PAGE 3: EDUCATIONAL BACKGROUND PAGE -->
-            <section id="page-education" class="app-page">
-                <div class="page-container scrollable-glass-container">
-                    
-                    <div class="section-title-wrap text-center">
-                        <h2>ACADEMIC JOURNEY &amp; PROJECTS</h2>
-                        <p class="section-desc">Timeline of Formal Qualifications and Featured Code Architecture</p>
-                    </div>
-
-                    <!-- Timeline Section: School, College, University -->
-                    <div class="education-timeline">
-                        
-                        <!-- School -->
-                        <div class="timeline-item">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content glass-card">
-                                <span class="time-period">2010 - 2016</span>
-                                <h3>Secondary School Honors</h3>
-                                <h4>St. Xavier International School</h4>
-                                <p>Specialized in Pure Physics and Mathematics. Graduated top 1% of the cohort with distinction.</p>
-                                <div class="timeline-tags">
-                                    <span>Mathematics</span><span>Physics</span><span>Computer Science</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- College -->
-                        <div class="timeline-item">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content glass-card">
-                                <span class="time-period">2016 - 2018</span>
-                                <h3>Higher Secondary Science Diploma</h3>
-                                <h4>National Institute of Technology &amp; Science</h4>
-                                <p>Focused on advanced algorithmic logic, electronic circuits, and computer engineering fundamentals.</p>
-                                <div class="timeline-tags">
-                                    <span>Data Structures</span><span>Electronics</span><span>Logic Design</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- University with 3D Rotating Circular Gallery -->
-                        <div class="timeline-item highlight-item">
-                            <div class="timeline-marker neon-glow"></div>
-                            <div class="timeline-content glass-card">
-                                <span class="time-period">2018 - 2022</span>
-                                <h3>B.Sc. in Computer Science &amp; Engineering</h3>
-                                <h4>Massachusetts Institute of System Architecture</h4>
-                                <p>Major in Software Systems &amp; Graphics Engines. Valedictorian honors and Dean's List for 8 consecutive semesters.</p>
-
-                                <!-- 3D Rotating University Gallery (Swaps image every 5 seconds) -->
-                                <div class="uni-gallery-3d-stage">
-                                    <div class="uni-gallery-ring" id="uni-carousel">
-                                        <div class="uni-slide active" data-index="0">
-                                            <img src="assets/images/uni-1.jpg" alt="University Campus Main Library">
-                                            <div class="uni-slide-caption">Main Research Campus</div>
-                                        </div>
-                                        <div class="uni-slide" data-index="1">
-                                            <img src="assets/images/uni-2.jpg" alt="Computer Science Laboratory">
-                                            <div class="uni-slide-caption">Graphics Computing Lab</div>
-                                        </div>
-                                        <div class="uni-slide" data-index="2">
-                                            <img src="assets/images/uni-3.jpg" alt="Graduation Ceremony">
-                                            <div class="uni-slide-caption">Graduation Convocation</div>
-                                        </div>
-                                    </div>
-                                    <div class="uni-carousel-controls">
-                                        <button class="uni-nav-btn" id="uni-prev">&lt;</button>
-                                        <span class="uni-indicator" id="uni-indicator">1 / 3</span>
-                                        <button class="uni-nav-btn" id="uni-next">&gt;</button>
-                                    </div>
-                                </div>
-
-                                <div class="timeline-tags">
-                                    <span>Distributed Systems</span><span>Computer Graphics</span><span>Algorithms</span><span>UI Engine Architecture</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- PROJECTS SECTION -->
-                    <div class="projects-section">
-                        <div class="section-title-wrap">
-                            <h2>FEATURED PROJECTS</h2>
-                            <p class="section-desc">Production Applications &amp; Open Source Core Systems</p>
-                        </div>
-
-                        <div class="projects-grid">
-                            
-                            <!-- Project 1 -->
-                            <div class="project-card glass-card">
-                                <div class="project-image-wrapper">
-                                    <img src="assets/images/project-1.jpg" alt="Aura OS Web Desktop Environment" loading="lazy">
-                                    <div class="project-overlay-glow"></div>
-                                </div>
-                                <div class="project-body">
-                                    <h3>Aura OS Shell</h3>
-                                    <p>A Web-based desktop operating system interface written purely in vanilla JS, simulating real windowing, audio synthesis, and hardware-accelerated rendering.</p>
-                                    <div class="project-tech-stack">
-                                        <span>HTML5 Canvas</span><span>Vanilla JS</span><span>CSS Grid/Flex</span><span>Web Audio API</span>
-                                    </div>
-                                    <div class="project-links">
-                                        <a href="https://github.com" target="_blank" rel="noopener" class="proj-btn github-link">GitHub Repo</a>
-                                        <a href="https://demo.aura-os.dev" target="_blank" rel="noopener" class="proj-btn live-link">Live Demo</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Project 2 -->
-                            <div class="project-card glass-card">
-                                <div class="project-image-wrapper">
-                                    <img src="assets/images/project-2.jpg" alt="Spatial GL Engine" loading="lazy">
-                                    <div class="project-overlay-glow"></div>
-                                </div>
-                                <div class="project-body">
-                                    <h3>HyperShader UI</h3>
-                                    <p>Low-overhead CSS and WebGL hybrid layout framework designed for ultra-smooth 60fps glassmorphic dashboard applications.</p>
-                                    <div class="project-tech-stack">
-                                        <span>GLSL Shaders</span><span>JavaScript</span><span>Custom Motion Physics</span>
-                                    </div>
-                                    <div class="project-links">
-                                        <a href="https://github.com" target="_blank" rel="noopener" class="proj-btn github-link">GitHub Repo</a>
-                                        <a href="https://demo.hypershader.dev" target="_blank" rel="noopener" class="proj-btn live-link">Live Demo</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- PAGE 4: INTERESTS PAGE -->
-            <section id="page-interests" class="app-page">
-                <div class="page-container scrollable-glass-container">
-                    
-                    <div class="section-title-wrap text-center">
-                        <h2>INTERESTS &amp; LIFESTYLE</h2>
-                        <p class="section-desc">Hobbies, Creative Outlets, and Personal Passions</p>
-                    </div>
-
-                    <div class="interests-grid">
-                        
-                        <div class="interest-card glass-card">
-                            <div class="interest-icon">📷</div>
-                            <div class="interest-media">
-                                <img src="assets/images/interests/photography.jpg" alt="Street Photography" loading="lazy">
-                            </div>
-                            <h3>Urban Photography</h3>
-                            <p>Capturing cyberpunk architecture, low-light street scenes, and glass-and-steel geometric symmetry across metropolitan cities.</p>
-                        </div>
-
-                        <div class="interest-card glass-card">
-                            <div class="interest-icon">🎧</div>
-                            <div class="interest-media">
-                                <img src="assets/images/interests/music.jpg" alt="Modular Synthesizer" loading="lazy">
-                            </div>
-                            <h3>Ambient Synth Audio</h3>
-                            <p>Designing space ambient soundtracks, sound synthesis, and algorithmic sound generation using modular hardware synthesis.</p>
-                        </div>
-
-                        <div class="interest-card glass-card">
-                            <div class="interest-icon">✈️</div>
-                            <div class="interest-media">
-                                <img src="assets/images/interests/travel.jpg" alt="Global Exploration" loading="lazy">
-                            </div>
-                            <h3>Architectural Travel</h3>
-                            <p>Exploring modern brutalist and futuristic architectural landmarks in Tokyo, Zurich, Singapore, and Oslo.</p>
-                        </div>
-
-                        <div class="interest-card glass-card">
-                            <div class="interest-icon">📚</div>
-                            <div class="interest-media">
-                                <img src="assets/images/interests/books.jpg" alt="Sci-Fi Literature" loading="lazy">
-                            </div>
-                            <h3>Sci-Fi &amp; Cybernetics</h3>
-                            <p>Deep diving into human-computer interaction theory, speculative fiction, speculative UI design, and quantum computing literature.</p>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            <!-- PAGE 5: PERSONAL LIFE PAGE (PREMIUM NOTEBOOK) -->
-            <section id="page-personal" class="app-page">
-                <div class="notebook-wrapper">
-                    <div class="notebook-binder">
-                        <div class="binder-ring"></div>
-                        <div class="binder-ring"></div>
-                        <div class="binder-ring"></div>
-                        <div class="binder-ring"></div>
-                        <div class="binder-ring"></div>
-                    </div>
-
-                    <div class="notebook-paper" id="notebook-paper">
-                        
-                        <!-- Notebook Page 1 -->
-                        <div class="paper-page active" data-page="1">
-                            <div class="handwritten-header">
-                                <h2>My Inner Circle &amp; Memories</h2>
-                                <span class="page-number">Page 01</span>
-                            </div>
-
-                            <p class="handwritten-intro">
-                                "The inner architecture of life is built upon the individuals who inspire, ground, and journey alongside us."
-                            </p>
-
-                            <div class="people-notebook-grid">
-                                
-                                <!-- Friends: Marzuk & Nasif -->
-                                <div class="notebook-person-card">
-                                    <div class="polaroid-frame">
-                                        <img src="assets/images/personal/marzuk.jpg" alt="Marzuk">
-                                    </div>
-                                    <div class="person-details">
-                                        <span class="relation-tag">- FRIEND</span>
-                                        <h3 class="handwritten-name">i. Marzuk</h3>
-                                        <p class="handwritten-note">Brother in code and creative collaborator. Always ready for late-night system builds.</p>
-                                    </div>
-                                </div>
-
-                                <div class="notebook-person-card">
-                                    <div class="polaroid-frame">
-                                        <img src="assets/images/personal/nasif.jpg" alt="Nasif">
-                                    </div>
-                                    <div class="person-details">
-                                        <span class="relation-tag">- FRIEND</span>
-                                        <h3 class="handwritten-name">ii. Nasif</h3>
-                                        <p class="handwritten-note">Sound designer and strategist. The voice of reason in ambitious endeavors.</p>
-                                    </div>
-                                </div>
-
-                                <!-- Love -->
-                                <div class="notebook-person-card feature-love">
-                                    <div class="polaroid-frame">
-                                        <img src="assets/images/personal/love.jpg" alt="Love">
-                                    </div>
-                                    <div class="person-details">
-                                        <span class="relation-tag">- LOVE</span>
-                                        <h3 class="handwritten-name">My Compass</h3>
-                                        <p class="handwritten-note">My constant light and infinite source of peace, joy, and unconditional warmth.</p>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <button class="notebook-turn-btn" id="turn-page-next">Turn to Family Page &rarr;</button>
-                        </div>
-
-                        <!-- Notebook Page 2 -->
-                        <div class="paper-page" data-page="2">
-                            <div class="handwritten-header">
-                                <h2>Family &amp; Pillars</h2>
-                                <span class="page-number">Page 02</span>
-                            </div>
-
-                            <div class="people-notebook-grid">
-                                
-                                <!-- Father -->
-                                <div class="notebook-person-card">
-                                    <div class="polaroid-frame">
-                                        <img src="assets/images/personal/father.jpg" alt="Father">
-                                    </div>
-                                    <div class="person-details">
-                                        <span class="relation-tag">- FATHER</span>
-                                        <h3 class="handwritten-name">Marcus Vane</h3>
-                                        <p class="handwritten-note">Taught me integrity, discipline, and the value of master craftsmanship.</p>
-                                    </div>
-                                </div>
-
-                                <!-- Mother -->
-                                <div class="notebook-person-card">
-                                    <div class="polaroid-frame">
-                                        <img src="assets/images/personal/mother.jpg" alt="Mother">
-                                    </div>
-                                    <div class="person-details">
-                                        <span class="relation-tag">- MOTHER</span>
-                                        <h3 class="handwritten-name">Elena Sterling Vane</h3>
-                                        <p class="handwritten-note">Taught me empathy, creativity, resilience, and curiosity about the universe.</p>
-                                    </div>
-                                </div>
-
-                                <!-- Sister -->
-                                <div class="notebook-person-card">
-                                    <div class="polaroid-frame">
-                                        <img src="assets/images/personal/sister.jpg" alt="Sister">
-                                    </div>
-                                    <div class="person-details">
-                                        <span class="relation-tag">- SISTER</span>
-                                        <h3 class="handwritten-name">Arya Vane</h3>
-                                        <p class="handwritten-note">My lifelong confidante, joy bringer, and relentless challenger.</p>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <button class="notebook-turn-btn" id="turn-page-prev">&larr; Back to Friends</button>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-        </main>
-    </div>
-
-    <!-- GLOBAL LIGHTBOX / MODAL OVERLAYS -->
-
-    <!-- Image Lightbox Modal -->
-    <div id="global-image-lightbox" class="modal-lightbox" aria-hidden="true">
-        <button class="modal-close-btn" id="lightbox-close">&times;</button>
-        <div class="lightbox-content-wrap">
-            <img id="lightbox-target-img" src="" alt="Expanded View">
-            <p id="lightbox-caption" class="lightbox-caption"></p>
+        <div class="notebook-paper" id="notebook-paper">
+          <!-- Dynamic Pages Injected Here via Script -->
         </div>
-    </div>
+      </div>
+    </section>
 
-    <!-- Video Fullscreen Modal -->
-    <div id="global-video-modal" class="modal-lightbox" aria-hidden="true">
-        <button class="modal-close-btn" id="video-modal-close">&times;</button>
-        <div class="lightbox-content-wrap video-wrap">
-            <video id="video-modal-player" controls autoplay playsinline></video>
-        </div>
-    </div>
+  </main>
 
-    <!-- PDF Viewer Modal -->
-    <div id="global-pdf-modal" class="modal-lightbox" aria-hidden="true">
-        <button class="modal-close-btn" id="pdf-modal-close">&times;</button>
-        <div class="lightbox-content-wrap pdf-wrap">
-            <iframe id="pdf-frame" src="" title="PDF Document Viewer"></iframe>
-        </div>
-    </div>
+  <!-- LIGHTBOX / FULLSCREEN MODAL -->
+  <div id="media-modal" class="modal-overlay hidden">
+    <button id="modal-close" class="modal-close-btn">&times;</button>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
 
-    <!-- JavaScript Bundle Loading -->
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
