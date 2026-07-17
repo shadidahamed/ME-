@@ -342,7 +342,10 @@ body.hovering .cursor-ring {
   top: 50%;
   transform: translateY(-50%);
   width: 48%;
-  max-height: 85vh;
+  
+  /* Change this max-height value (e.g., from 85vh to 60vh or 100vh) */
+  max-height: 85vh; 
+  
   opacity: 0.35;
   pointer-events: none;
   overflow: hidden;
@@ -351,11 +354,13 @@ body.hovering .cursor-ring {
   justify-content: center;
   align-items: center;
 }
-
 .ascii-face-art {
   font-family: 'Courier New', Courier, monospace;
-  font-size: 8px;
-  line-height: 7px;
+  
+  /* Adjust font-size and line-height together to change total height */
+  font-size: 8px;   /* e.g., decrease to 6px or increase to 10px */
+  line-height: 7px; /* decrease to shrink total height, increase to expand */
+  
   letter-spacing: 1px;
   color: var(--secondary-orange);
   text-shadow: 0 0 6px var(--primary-red);
