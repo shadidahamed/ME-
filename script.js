@@ -1,394 +1,412 @@
-/**
- * SHADID AHAMED - Production Modular Web Engine
- */
-
-document.addEventListener("DOMContentLoaded", () => {
-  App.init();
-});
-
-const App = {
-  init() {
-    Cursor.init();
-    Navigation.init();
-    AudioEngine.init();
-    OrbitalSkills.init();
-    DiceSlider.init();
-    Notebook.init();
-    FamilyTree.init();
-    Achievements.init();
-    GalleryTabs.init();
-    Lightbox.init();
-  }
-};
-
 /* ==========================================================================
-   CUSTOM CURSOR ENGINE
+   FUTURISTIC PREMIUM PORTFOLIO SYSTEM - SCRIPT ENGINE (Vanilla JS)
+   No External Libraries / Pure Native Execution
    ========================================================================== */
-const Cursor = {
-  init() {
-    const dot = document.getElementById("cursor-dot");
-    const ring = document.getElementById("cursor-ring");
 
-    if (window.innerWidth <= 768) return; // Desktop only
+document.addEventListener('DOMContentLoaded', () => {
+  
+  // ==========================================================================
+  // 1. STATE & GLOBAL SELECTORS
+  // ==========================================================================
+  const state = {
+    activePage: 'page-home',
+    audioPlaying: false,
+    orbitIndex: 0,
+    orbitInterval: null,
+    orbitPaused: false,
+    notebookPage: 1,
+    totalNotebookPages: 6
+  };
 
-    window.addEventListener("mousemove", (e) => {
-      const { clientX: x, clientY: y } = e;
-      dot.style.left = `${x}px`;
-      dot.style.top = `${y}px`;
+  const cursorDot = document.getElementById('cursor-dot');
+  const cursorRing = document.getElementById('cursor-ring');
+  const bgAudio = document.getElementById('bg-audio');
+  const audioBtn = document.getElementById('audio-toggle');
+  const globalModal = document.getElementById('global-modal');
+  const modalBody = document.getElementById('modal-body');
+  const modalClose = document.getElementById('modal-close');
+  const modalBackdrop = document.getElementById('modal-backdrop');
 
-      ring.animate(
-        { left: `${x}px`, top: `${y}px` },
-        { duration: 500, fill: "forwards" }
-      );
+  // ==========================================================================
+  // 2. CUSTOM CURSOR PHYSICS (Desktop)
+  // ==========================================================================
+  if (window.innerWidth > 900) {
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursorDot.style.left = `${mouseX}px`;
+      cursorDot.style.top = `${mouseY}px`;
     });
 
-    const interactiveSelectors = "a, button, .media-card, .orbit-item, .social-btn";
-    document.querySelectorAll(interactiveSelectors).forEach((el) => {
-      el.addEventListener("mouseenter", () => document.body.classList.add("cursor-hover"));
-      el.addEventListener("mouseleave", () => document.body.classList.remove("cursor-hover"));
+    function renderCursor() {
+      ringX += (mouseX - ringX) * 0.15;
+      ringY += (mouseY - ringY) * 0.15;
+      cursorRing.style.left = `${ringX}px`;
+      cursorRing.style.top = `${ringY}px`;
+      requestAnimationFrame(renderCursor);
+    }
+    renderCursor();
+
+    // Hover Scaling Trigger
+    const interactiveElements = document.querySelectorAll('a, button, .media-card, .orbit-item, .cert-glass-card, .billboard-card, .spiral-card, .hobby-card');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
     });
   }
-};
 
-/* ==========================================================================
-   NAVIGATION ENGINE (SINGLE PAGE APPLICATION)
-   ========================================================================== */
-const Navigation = {
-  init() {
-    const navBtns = document.querySelectorAll(".nav-btn, .drawer-btn");
-    const pages = document.querySelectorAll(".page-view");
-    const mobileDrawer = document.getElementById("mobile-menu");
-    const mobileToggle = document.getElementById("mobile-toggle");
+  // ==========================================================================
+  // 3. NAVIGATION ENGINE (Page Switcher & Drawer)
+  // ==========================================================================
+  function switchPage(pageId) {
+    if (pageId === state.activePage) return;
 
-    navBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const pageId = btn.getAttribute("data-page");
+    const currentElem = document.getElementById(state.activePage);
+    const targetElem = document.getElementById(pageId);
 
-        navBtns.forEach((b) => b.classList.remove("active"));
-        document.querySelectorAll(`[data-page="${pageId}"]`).forEach((b) => b.classList.add("active"));
+    if (currentElem) currentElem.classList.remove('active');
+    if (targetElem) targetElem.classList.add('active');
 
-        pages.forEach((p) => {
-          if (p.id === `page-${pageId}`) {
-            p.classList.add("active");
-          } else {
-            p.classList.remove("active");
-          }
-        });
+    state.activePage = pageId;
 
-        if (mobileDrawer.classList.contains("open")) {
-          mobileDrawer.classList.remove("open");
-        }
-      });
-    });
-
-    if (mobileToggle) {
-      mobileToggle.addEventListener("click", () => {
-        mobileDrawer.classList.toggle("open");
-      });
-    }
-
-    // Phone trigger interaction
-    const phoneBtn = document.getElementById("phone-trigger");
-    const phoneTooltip = document.getElementById("phone-display");
-    if (phoneBtn) {
-      phoneBtn.addEventListener("click", () => {
-        phoneTooltip.classList.toggle("hidden");
-      });
-    }
-  }
-};
-
-/* ==========================================================================
-   AUDIO ENGINE
-   ========================================================================== */
-const AudioEngine = {
-  audio: null,
-  init() {
-    this.audio = document.getElementById("bg-audio");
-    if (this.audio) {
-      this.audio.volume = 0.2;
-      // Auto-play attempt on user first interaction
-      window.addEventListener("click", () => {
-        if (this.audio.paused) {
-          this.audio.play().catch(() => {});
-        }
-      }, { once: true });
-    }
-  },
-  pause() {
-    if (this.audio && !this.audio.paused) this.audio.pause();
-  },
-  resume() {
-    if (this.audio && this.audio.paused) this.audio.play().catch(() => {});
-  }
-};
-
-/* ==========================================================================
-   3D ORBITAL SKILLS SHOWCASE
-   ========================================================================== */
-const OrbitalSkills = {
-  items: [],
-  container: null,
-  angle: 0,
-  speed: (2 * Math.PI) / 33, // 11 items, 3s each = 33s full turn
-  interval: null,
-  isPaused: false,
-
-  init() {
-    this.container = document.getElementById("orbital-container");
-    if (!this.container) return;
-    this.items = Array.from(this.container.querySelectorAll(".orbit-item"));
-    
-    this.positionItems();
-    this.startRotation();
-
-    this.items.forEach((item) => {
-      item.addEventListener("click", (e) => {
-        e.stopPropagation();
-        this.pauseAndEnlarge(item);
-      });
-    });
-
-    document.addEventListener("click", () => {
-      if (this.isPaused) this.resumeRotation();
-    });
-  },
-
-  positionItems() {
-    const radius = 110;
-    const total = this.items.length;
-    
-    this.items.forEach((item, idx) => {
-      const currentAngle = this.angle + (idx * (2 * Math.PI / total));
-      const x = Math.cos(currentAngle) * radius;
-      const y = Math.sin(currentAngle) * radius;
-      
-      item.style.transform = `translate(${x}px, ${y}px) scale(${1 + Math.sin(currentAngle) * 0.2})`;
-      item.style.opacity = `${0.4 + (Math.sin(currentAngle) + 1) * 0.3}`;
-    });
-
-    // Update center title based on top element
-    const currentIdx = Math.floor(((( -this.angle % (2 * Math.PI)) + (2 * Math.PI)) % (2 * Math.PI)) / (2 * Math.PI / total)) % total;
-    const currentItem = this.items[currentIdx];
-    if (currentItem) {
-      document.getElementById("orbit-skill-title").innerText = currentItem.getAttribute("data-name");
-    }
-  },
-
-  startRotation() {
-    this.interval = setInterval(() => {
-      if (!this.isPaused) {
-        this.angle -= 0.01;
-        this.positionItems();
+    // Synchronize Desktop Sidebar Icons
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      if (btn.getAttribute('data-page') === pageId) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
       }
-    }, 50);
-  },
+    });
 
-  pauseAndEnlarge(item) {
-    this.isPaused = true;
-    const title = item.getAttribute("data-name");
-    const desc = item.getAttribute("data-desc");
+    // Synchronize Mobile Drawer Icons
+    document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+      if (btn.getAttribute('data-page') === pageId) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
 
-    const ghost = document.getElementById("ghost-skill-card");
-    document.getElementById("ghost-title").innerText = title;
-    document.getElementById("ghost-desc").innerText = desc;
-    ghost.classList.remove("hidden");
-  },
-
-  resumeRotation() {
-    this.isPaused = false;
-    document.getElementById("ghost-skill-card").classList.add("hidden");
+    // Close Mobile Drawer if Open
+    const drawer = document.getElementById('mobile-menu');
+    if (drawer) drawer.classList.remove('open');
   }
-};
 
-/* ==========================================================================
-   ACHIEVEMENTS (21 PDF CARDS)
-   ========================================================================== */
-const Achievements = {
-  init() {
-    const grid = document.getElementById("cert-grid");
-    if (!grid) return;
+  // Desktop Nav Clicks
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetPage = btn.getAttribute('data-page');
+      switchPage(targetPage);
+    });
+  });
 
+  // Mobile Nav Clicks
+  document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetPage = btn.getAttribute('data-page');
+      switchPage(targetPage);
+    });
+  });
+
+  // Mobile Drawer Toggle
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const drawerClose = document.getElementById('drawer-close');
+  const mobileDrawer = document.getElementById('mobile-menu');
+
+  if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', () => mobileDrawer.classList.add('open'));
+  }
+  if (drawerClose) {
+    drawerClose.addEventListener('click', () => mobileDrawer.classList.remove('open'));
+  }
+
+  // ==========================================================================
+  // 4. BACKGROUND AUDIO MANAGER
+  // ==========================================================================
+  if (audioBtn && bgAudio) {
+    audioBtn.addEventListener('click', () => {
+      if (state.audioPlaying) {
+        bgAudio.pause();
+        audioBtn.classList.add('paused');
+        state.audioPlaying = false;
+      } else {
+        bgAudio.volume = 0.25; // Soft ambient volume
+        bgAudio.play().then(() => {
+          audioBtn.classList.remove('paused');
+          state.audioPlaying = true;
+        }).catch(err => console.log("Audio autoplay restricted:", err));
+      }
+    });
+  }
+
+  function pauseAudioForMedia() {
+    if (bgAudio && state.audioPlaying) {
+      bgAudio.pause();
+    }
+  }
+
+  function resumeAudioAfterMedia() {
+    if (bgAudio && state.audioPlaying) {
+      bgAudio.play();
+    }
+  }
+
+  // ==========================================================================
+  // 5. ASCII CODE FACE MATRIX GENERATOR
+  // ==========================================================================
+  const asciiTarget = document.getElementById('ascii-face-target');
+  if (asciiTarget) {
+    const rawChars = "01@#$&%*{}[]<>~/\\SHADID";
+    let lines = [];
+    for (let i = 0; i < 45; i++) {
+      let line = "";
+      for (let j = 0; j < 65; j++) {
+        line += rawChars[Math.floor(Math.random() * rawChars.length)];
+      }
+      lines.push(line);
+    }
+    asciiTarget.textContent = lines.join('\n');
+
+    // Continuous glitch effect
+    setInterval(() => {
+      let lineIdx = Math.floor(Math.random() * lines.length);
+      let newLine = "";
+      for (let j = 0; j < 65; j++) {
+        newLine += rawChars[Math.floor(Math.random() * rawChars.length)];
+      }
+      lines[lineIdx] = newLine;
+      asciiTarget.textContent = lines.join('\n');
+    }, 150);
+  }
+
+  // ==========================================================================
+  // 6. HOME GALLERY TABS & LIGHTBOX
+  // ==========================================================================
+  const tabBtns = document.querySelectorAll('.gallery-tabs .tab-btn');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+
+      btn.classList.add('active');
+      const targetTab = document.getElementById(btn.getAttribute('data-tab'));
+      if (targetTab) targetTab.classList.add('active');
+    });
+  });
+
+  // Lightbox / Modal Handler
+  function openModal(contentHtml) {
+    modalBody.innerHTML = contentHtml;
+    globalModal.classList.add('active');
+    pauseAudioForMedia();
+  }
+
+  function closeModal() {
+    globalModal.classList.remove('active');
+    modalBody.innerHTML = '';
+    resumeAudioAfterMedia();
+  }
+
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+
+  // Gallery Card Clicks
+  document.querySelectorAll('.media-card').forEach(card => {
+    card.addEventListener('click', () => {
+      if (card.classList.contains('video-card')) {
+        const vsrc = card.getAttribute('data-video');
+        openModal(`<video src="${vsrc}" controls autoplay style="max-width:100%; max-height:80vh; border-radius:12px;"></video>`);
+      } else {
+        const isrc = card.getAttribute('data-full');
+        openModal(`<img src="${isrc}" style="max-width:100%; max-height:80vh; border-radius:12px; object-fit:contain;">`);
+      }
+    });
+  });
+
+  // Phone Copy Toast
+  const phoneBtn = document.getElementById('phone-copy-btn');
+  const phoneToast = document.getElementById('phone-toast');
+  if (phoneBtn && phoneToast) {
+    phoneBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText("01326162684");
+      phoneToast.classList.add('show');
+      setTimeout(() => phoneToast.classList.remove('show'), 3000);
+    });
+  }
+
+  // ==========================================================================
+  // 7. 3D ORBITAL CIRCULAR SKILL SHOWCASE ENGINE (Vertical Tire Spin)
+  // ==========================================================================
+  const orbitAxis = document.getElementById('orbit-axis');
+  const orbitItems = document.querySelectorAll('.orbit-item');
+  const orbitSkillTitle = document.getElementById('orbit-skill-title');
+  const orbitDescText = document.getElementById('orbit-desc-text');
+  const totalItems = orbitItems.length;
+
+  function positionOrbitItems() {
+    const radius = 140; // Cylinder radius
+    const angleStep = (2 * Math.PI) / totalItems;
+
+    orbitItems.forEach((item, index) => {
+      const currentAngle = (index - state.orbitIndex) * angleStep;
+      const y = Math.sin(currentAngle) * radius;
+      const z = Math.cos(currentAngle) * radius;
+      const scale = (z + radius) / (2 * radius) * 0.5 + 0.5;
+      const opacity = (z + radius) / (2 * radius) * 0.7 + 0.3;
+
+      item.style.transform = `translate3d(0px, ${y}px, ${z}px) scale(${scale})`;
+      item.style.opacity = opacity;
+      item.style.zIndex = Math.round(z + radius);
+
+      if (Math.abs(currentAngle % (2 * Math.PI)) < 0.1 || Math.abs(currentAngle) < 0.1) {
+        item.classList.add('active-front');
+        if (orbitSkillTitle) orbitSkillTitle.textContent = item.getAttribute('data-name');
+        if (orbitDescText) orbitDescText.textContent = item.getAttribute('data-desc');
+      } else {
+        item.classList.remove('active-front');
+      }
+    });
+  }
+
+  function startOrbitAutoRotation() {
+    state.orbitInterval = setInterval(() => {
+      if (!state.orbitPaused) {
+        state.orbitIndex = (state.orbitIndex + 1) % totalItems;
+        positionOrbitItems();
+      }
+    }, 3000); // Rotates exactly every 3 seconds
+  }
+
+  positionOrbitItems();
+  startOrbitAutoRotation();
+
+  // Click Item Pause & Enlarge
+  orbitItems.forEach(item => {
+    item.addEventListener('click', () => {
+      state.orbitPaused = true;
+      const index = parseInt(item.getAttribute('data-index'));
+      state.orbitIndex = index;
+      positionOrbitItems();
+
+      const imgSrc = item.querySelector('img').src;
+      const name = item.getAttribute('data-name');
+      const desc = item.getAttribute('data-desc');
+
+      openModal(`
+        <div style="text-align:center; padding:20px;">
+          <img src="${imgSrc}" style="width:100px; height:100px; margin-bottom:15px;">
+          <h2 style="color:var(--accent-glow); margin-bottom:10px;">${name}</h2>
+          <p style="color:rgba(255,255,255,0.8); max-width:400px; margin:0 auto; line-height:1.6;">${desc}</p>
+        </div>
+      `);
+    });
+  });
+
+  // Resume orbit on modal close
+  if (modalClose) {
+    modalClose.addEventListener('click', () => { state.orbitPaused = false; });
+  }
+
+  // ==========================================================================
+  // 8. CERTIFICATES GENERATOR (21 Glass Cards)
+  // ==========================================================================
+  const certGrid = document.getElementById('cert-grid');
+  if (certGrid) {
+    let certHTML = '';
     for (let i = 1; i <= 21; i++) {
-      const card = document.createElement("div");
-      card.className = "cert-card glass-card";
-      card.innerHTML = `
-        <h3>Certificate #${i}</h3>
-        <p>Verified Professional Credential</p>
-        <div style="margin-top: 15px; display: flex; gap: 10px;">
-          <a href="assets/pdf/cert${i}.pdf" download class="glass-btn" style="width:auto; padding: 0 10px; font-size:12px;">Download</a>
-          <a href="assets/pdf/cert${i}.pdf" target="_blank" class="glass-btn" style="width:auto; padding: 0 10px; font-size:12px;">Open</a>
+      certHTML += `
+        <div class="cert-glass-card">
+          <img src="assets/images/cert_thumb.jpg" alt="Certificate ${i}" class="cert-preview-img" onerror="this.src='https://via.placeholder.com/240x140/300015/ffffff?text=Certification+${i}'">
+          <h4 style="font-size:0.95rem; margin-bottom:6px; color:var(--accent-white);">Master Certification #${i}</h4>
+          <p style="font-size:0.75rem; color:rgba(255,255,255,0.6);">Issued by Global Web Authority</p>
+          <div class="cert-btn-group">
+            <button class="cert-btn" onclick="window.open('assets/pdf/cert${i}.pdf', '_blank')">Open PDF</button>
+            <a class="cert-btn" href="assets/pdf/cert${i}.pdf" download style="text-align:center; text-decoration:none;">Download</a>
+          </div>
         </div>
       `;
-      grid.appendChild(card);
     }
+    certGrid.innerHTML = certHTML;
   }
-};
 
-/* ==========================================================================
-   FAMILY TREE ENGINE
-   ========================================================================== */
-const FamilyTree = {
-  init() {
-    const fatherRoot = document.getElementById("father-tree");
-    const motherRoot = document.getElementById("mother-tree");
+  // ==========================================================================
+  // 9. 3D DICE AUTO-ROTATION ENGINE (College & University)
+  // ==========================================================================
+  function init3DDice(diceId) {
+    const dice = document.getElementById(diceId);
+    if (!dice) return;
 
-    if (fatherRoot) {
-      fatherRoot.innerHTML = this.createNodes(6, "Father Line Gen");
-    }
-    if (motherRoot) {
-      motherRoot.innerHTML = this.createNodes(4, "Mother Line Gen");
-    }
-  },
-
-  createNodes(depth, label) {
-    if (depth === 0) return "";
-    return `
-      <li>
-        <span style="color: var(--secondary-orange); cursor:pointer;">${label} ${depth} Ancestor</span>
-        <ul>${this.createNodes(depth - 1, label)}</ul>
-      </li>
-    `;
-  }
-};
-
-/* ==========================================================================
-   3D DICE SLIDER (UNIVERSITY)
-   ========================================================================== */
-const DiceSlider = {
-  cube: null,
-  step: 0,
-
-  init() {
-    this.cube = document.getElementById("dice-cube");
-    if (!this.cube) return;
-
+    let faceAngle = 0;
     setInterval(() => {
-      this.step = (this.step + 1) % 4;
-      this.cube.style.transform = `rotateY(-${this.step * 90}deg)`;
-    }, 5000);
-  }
-};
+      faceAngle += 90;
+      dice.style.transform = `rotateY(${faceAngle}deg)`;
+    }, 5000); // 360-degree rotation shift every 5 seconds
 
-/* ==========================================================================
-   GALLERY TABS
-   ========================================================================== */
-const GalleryTabs = {
-  init() {
-    const tabs = document.querySelectorAll(".tab-btn");
-    const contents = document.querySelectorAll(".tab-content");
-
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        const target = tab.getAttribute("data-tab");
-
-        tabs.forEach((t) => t.classList.remove("active"));
-        contents.forEach((c) => c.classList.remove("active"));
-
-        tab.classList.add("active");
-        document.getElementById(`tab-${target}`).classList.add("active");
-      });
+    dice.addEventListener('click', () => {
+      dice.classList.toggle('expanded');
     });
   }
-};
 
-/* ==========================================================================
-   NOTEBOOK PAGINATION (PERSONAL LIFE)
-   ========================================================================== */
-const Notebook = {
-  currentPage: 0,
-  pages: [
-    { title: "Marzuk", text: "A brotherly friend through all thicks and thins.", img: "assets/images/marzuk.jpg" },
-    { title: "Nasif", text: "Tech discussions and endless dynamic ideas partner.", img: "assets/images/nasif.jpg" },
-    { title: "Love", text: "Inspiration and core strength behind every creative effort.", img: "assets/images/love.jpg" },
-    { title: "Father", text: "The foundation of discipline, focus, and strength.", img: "assets/images/father.jpg" },
-    { title: "Mother", text: "The endless warmth, care, and guidance.", img: "assets/images/mother.jpg" },
-    { title: "Sister", text: "Joy, laughter, and lifelong support.", img: "assets/images/sister.jpg" }
-  ],
+  init3DDice('college-dice');
+  init3DDice('university-dice');
 
-  init() {
-    this.render();
-    document.getElementById("prev-page")?.addEventListener("click", () => this.changePage(-1));
-    document.getElementById("next-page")?.addEventListener("click", () => this.changePage(1));
-  },
+  // ==========================================================================
+  // 10. PERSONAL NOTEBOOK FLIP ENGINE
+  // ==========================================================================
+  const nbPrevBtn = document.getElementById('nb-prev-btn');
+  const nbNextBtn = document.getElementById('nb-next-btn');
+  const nbIndicator = document.getElementById('nb-page-indicator');
+  const pages = document.querySelectorAll('.nb-page');
 
-  changePage(dir) {
-    const newPage = this.currentPage + dir;
-    if (newPage >= 0 && newPage < this.pages.length) {
-      this.currentPage = newPage;
-      this.render();
-    }
-  },
-
-  render() {
-    const paper = document.getElementById("notebook-paper");
-    const pageNum = document.getElementById("notebook-page-num");
-    if (!paper) return;
-
-    const data = this.pages[this.currentPage];
-    pageNum.innerText = `Page ${this.currentPage + 1} of ${this.pages.length}`;
-
-    paper.innerHTML = `
-      <div class="note-page-content">
-        <img src="${data.img}" alt="${data.title}" class="note-img" />
-        <div>
-          <h3 style="font-family: var(--font-cursive); font-size: 1.8rem; color: var(--secondary-orange);">${data.title}</h3>
-          <p style="margin-top: 10px;">${data.text}</p>
-        </div>
-      </div>
-    `;
-  }
-};
-
-/* ==========================================================================
-   LIGHTBOX / FULLSCREEN MEDIA MODAL ENGINE
-   ========================================================================== */
-const Lightbox = {
-  modal: null,
-  body: null,
-
-  init() {
-    this.modal = document.getElementById("media-modal");
-    this.body = document.getElementById("modal-body");
-    const closeBtn = document.getElementById("modal-close");
-
-    if (closeBtn) {
-      closeBtn.addEventListener("click", () => this.close());
-    }
-
-    document.querySelectorAll(".media-card").forEach((card) => {
-      card.addEventListener("click", () => {
-        const src = card.getAttribute("data-src");
-        const type = card.getAttribute("data-type");
-        this.open(src, type);
-      });
+  function updateNotebook() {
+    pages.forEach((page, idx) => {
+      const pageNum = idx + 1;
+      if (pageNum === state.notebookPage) {
+        page.classList.add('active');
+        page.classList.remove('flipped');
+      } else if (pageNum < state.notebookPage) {
+        page.classList.remove('active');
+        page.classList.add('flipped');
+      } else {
+        page.classList.remove('active');
+        page.classList.remove('flipped');
+      }
     });
-  },
 
-  open(src, type) {
-    if (!this.modal || !this.body) return;
-    this.body.innerHTML = "";
-
-    if (type === "video") {
-      AudioEngine.pause();
-      const video = document.createElement("video");
-      video.src = src;
-      video.controls = true;
-      video.autoplay = true;
-      this.body.appendChild(video);
-    } else {
-      const img = document.createElement("img");
-      img.src = src;
-      this.body.appendChild(img);
+    if (nbIndicator) {
+      nbIndicator.textContent = `Page ${state.notebookPage} of ${state.totalNotebookPages}`;
     }
-
-    this.modal.classList.remove("hidden");
-  },
-
-  close() {
-    if (!this.modal) return;
-    this.modal.classList.add("hidden");
-    if (this.body) this.body.innerHTML = "";
-    AudioEngine.resume();
   }
-};
+
+  if (nbNextBtn) {
+    nbNextBtn.addEventListener('click', () => {
+      if (state.notebookPage < state.totalNotebookPages) {
+        state.notebookPage++;
+        updateNotebook();
+      }
+    });
+  }
+
+  if (nbPrevBtn) {
+    nbPrevBtn.addEventListener('click', () => {
+      if (state.notebookPage > 1) {
+        state.notebookPage--;
+        updateNotebook();
+      }
+    });
+  }
+
+  // ==========================================================================
+  // 11. PERSONAL VIDEO RING CLICK HANDLER
+  // ==========================================================================
+  document.querySelectorAll('.ring-video-thumb').forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      const vsrc = thumb.getAttribute('data-vsrc');
+      openModal(`<video src="${vsrc}" controls autoplay style="max-width:100%; max-height:80vh; border-radius:12px;"></video>`);
+    });
+  });
+
+});
