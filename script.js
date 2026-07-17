@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         audioBtn.classList.add('paused');
         state.audioPlaying = false;
       } else {
-        bgAudio.volume = 0.25; // Soft ambient volume
+        bgAudio.volume = 0.75; // Soft ambient volume
         bgAudio.play().then(() => {
           audioBtn.classList.remove('paused');
           state.audioPlaying = true;
