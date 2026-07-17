@@ -37,15 +37,19 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-      cursorDot.style.left = `${mouseX}px`;
-      cursorDot.style.top = `${mouseY}px`;
+      if (cursorDot) {
+        cursorDot.style.left = `${mouseX}px`;
+        cursorDot.style.top = `${mouseY}px`;
+      }
     });
 
     function renderCursor() {
       ringX += (mouseX - ringX) * 0.15;
       ringY += (mouseY - ringY) * 0.15;
-      cursorRing.style.left = `${ringX}px`;
-      cursorRing.style.top = `${ringY}px`;
+      if (cursorRing) {
+        cursorRing.style.left = `${ringX}px`;
+        cursorRing.style.top = `${ringY}px`;
+      }
       requestAnimationFrame(renderCursor);
     }
     renderCursor();
@@ -116,10 +120,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const drawerClose = document.getElementById('drawer-close');
   const mobileDrawer = document.getElementById('mobile-menu');
 
-  if (hamburgerBtn) {
+  if (hamburgerBtn && mobileDrawer) {
     hamburgerBtn.addEventListener('click', () => mobileDrawer.classList.add('open'));
   }
-  if (drawerClose) {
+  if (drawerClose && mobileDrawer) {
     drawerClose.addEventListener('click', () => mobileDrawer.classList.remove('open'));
   }
 
@@ -154,91 +158,79 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
- // ==========================================================================
-// 5. HIGH-PRECISION DYNAMIC PORTRAIT ASCII ENGINE
-// ==========================================================================
-const asciiTarget = document.getElementById('ascii-face-target');
+  // ==========================================================================
+  // 5. HIGH-PRECISION DYNAMIC PORTRAIT ASCII ENGINE
+  // ==========================================================================
+  const asciiTarget = document.getElementById('ascii-face-target');
 
-if (asciiTarget) {
-  // Density scale from dark (dense code characters) to light (spaces)
-  const densityChars = ' @N#W$9876543210?!abc;:+=-,._ ';
-  const glitchSet = '01{}[]<>/\\*&#$%@';
+  if (asciiTarget) {
+    // Density scale from dark (dense code characters) to light (spaces)
+    const densityChars = ' @N#W$9876543210?!abc;:+=-,._ ';
+    const glitchSet = '01{}[]<>/\\*&#$%@';
 
-  const img = new Image();
-  // Uses your profile image from assets
-  img.src = 'assets/images/profile.jpg';
+    const img = new Image();
+    // Uses your profile image from assets
+    img.src = 'assets/images/profile.jpg';
 
-  img.onload = () => {
-    // Hidden canvas for off-screen pixel processing
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
+    img.onload = () => {
+      // Hidden canvas for off-screen pixel processing
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
 
-    // High resolution grid for precise facial features (eyes, glasses, jaw, hair)
-    const width = 80;
-    const height = Math.floor(img.height * (width / img.width) * 0.45);
+      // High resolution grid for precise facial features (eyes, glasses, jaw, hair)
+      const width = 80;
+      const height = Math.floor(img.height * (width / img.width) * 0.45);
 
-    canvas.width = width;
-    canvas.height = height;
+      canvas.width = width;
+      canvas.height = height;
 
-    // Draw image to scale on canvas
-    ctx.drawImage(img, 0, 0, width, height);
-    const imgData = ctx.getImageData(0, 0, width, height).data;
+      // Draw image to scale on canvas
+      ctx.drawImage(img, 0, 0, width, height);
+      const imgData = ctx.getImageData(0, 0, width, height).data;
 
-    let baseAsciiMatrix = [];
+      let baseAsciiMatrix = [];
 
-    // Convert pixel luminosity to corresponding density character
-    for (let y = 0; y < height; y++) {
-      let row = [];
-      for (let x = 0; x < width; x++) {
-        const offset = (y * width + x) * 4;
-        const r = imgData[offset];
-        const g = imgData[offset + 1];
-        const b = imgData[offset + 2];
+      // Convert pixel luminosity to corresponding density character
+      for (let y = 0; y < height; y++) {
+        let row = [];
+        for (let x = 0; x < width; x++) {
+          const offset = (y * width + x) * 4;
+          const r = imgData[offset];
+          const g = imgData[offset + 1];
+          const b = imgData[offset + 2];
 
-        // Perceptual brightness formula
-        const brightness = (0.299 * r + 0.587 * g + 0.114 * b);
-        const charIdx = Math.floor((1 - (brightness / 255)) * (densityChars.length - 1));
-        
-        row.push(densityChars[charIdx]);
+          // Perceptual brightness formula
+          const brightness = (0.299 * r + 0.587 * g + 0.114 * b);
+          const charIdx = Math.floor((1 - (brightness / 255)) * (densityChars.length - 1));
+          
+          row.push(densityChars[charIdx]);
+        }
+        baseAsciiMatrix.push(row);
       }
-      baseAsciiMatrix.push(row);
-    }
 
-    // Render loop with subtle continuous code glitching
-    function renderMatrix() {
-      const glitchedText = baseAsciiMatrix.map(row => {
-        return row.map(ch => {
-          // Glitch non-space characters slightly to keep the matrix alive
-          if (ch !== ' ' && Math.random() < 0.02) {
-            return glitchSet[Math.floor(Math.random() * glitchSet.length)];
-          }
-          return ch;
-        }).join('');
-      }).join('\n');
+      // Render loop with subtle continuous code glitching
+      function renderMatrix() {
+        const glitchedText = baseAsciiMatrix.map(row => {
+          return row.map(ch => {
+            // Glitch non-space characters slightly to keep the matrix alive
+            if (ch !== ' ' && Math.random() < 0.02) {
+              return glitchSet[Math.floor(Math.random() * glitchSet.length)];
+            }
+            return ch;
+          }).join('');
+        }).join('\n');
 
-      asciiTarget.textContent = glitchedText;
-    }
-
-    renderMatrix();
-    // Continuous light code flicker
-    setInterval(renderMatrix, 100);
-  };
-
-  img.onerror = () => {
-    console.warn("Profile image failed to load for ASCII canvas processing. Ensure assets/images/profile.jpg is present.");
-  };
-}
-
-    // Continuous glitch effect
-    setInterval(() => {
-      let lineIdx = Math.floor(Math.random() * lines.length);
-      let newLine = "";
-      for (let j = 0; j < 65; j++) {
-        newLine += rawChars[Math.floor(Math.random() * rawChars.length)];
+        asciiTarget.textContent = glitchedText;
       }
-      lines[lineIdx] = newLine;
-      asciiTarget.textContent = lines.join('\n');
-    }, 150);
+
+      renderMatrix();
+      // Continuous light code flicker
+      setInterval(renderMatrix, 100);
+    };
+
+    img.onerror = () => {
+      console.warn("Profile image failed to load for ASCII canvas processing. Ensure assets/images/profile.jpg is present.");
+    };
   }
 
   // ==========================================================================
@@ -258,15 +250,19 @@ if (asciiTarget) {
 
   // Lightbox / Modal Handler
   function openModal(contentHtml) {
-    modalBody.innerHTML = contentHtml;
-    globalModal.classList.add('active');
-    pauseAudioForMedia();
+    if (modalBody && globalModal) {
+      modalBody.innerHTML = contentHtml;
+      globalModal.classList.add('active');
+      pauseAudioForMedia();
+    }
   }
 
   function closeModal() {
-    globalModal.classList.remove('active');
-    modalBody.innerHTML = '';
-    resumeAudioAfterMedia();
+    if (globalModal && modalBody) {
+      globalModal.classList.remove('active');
+      modalBody.innerHTML = '';
+      resumeAudioAfterMedia();
+    }
   }
 
   if (modalClose) modalClose.addEventListener('click', closeModal);
@@ -286,22 +282,23 @@ if (asciiTarget) {
   });
 
   // Copy phone number to clipboard & show glass toast on click
-const phoneBtn = document.getElementById('phone-copy-btn');
-const phoneToast = document.getElementById('phone-toast');
+  const phoneBtn = document.getElementById('phone-copy-btn');
+  const phoneToast = document.getElementById('phone-toast');
 
-if (phoneBtn && phoneToast) {
-  phoneBtn.addEventListener('click', () => {
-    const phoneNumber = "01326162684";
-    navigator.clipboard.writeText(phoneNumber).then(() => {
-      phoneToast.classList.add('show');
-      setTimeout(() => {
-        phoneToast.classList.remove('show');
-      }, 3000); // Hides after 3 seconds
-    }).catch(err => {
-      console.error('Failed to copy text: ', err);
+  if (phoneBtn && phoneToast) {
+    phoneBtn.addEventListener('click', () => {
+      const phoneNumber = "01326162684";
+      navigator.clipboard.writeText(phoneNumber).then(() => {
+        phoneToast.classList.add('show');
+        setTimeout(() => {
+          phoneToast.classList.remove('show');
+        }, 3000); // Hides after 3 seconds
+      }).catch(err => {
+        console.error('Failed to copy text: ', err);
+      });
     });
-  });
-}
+  }
+
   // ==========================================================================
   // 7. 3D ORBITAL CIRCULAR SKILL SHOWCASE ENGINE (Vertical Tire Spin)
   // ==========================================================================
@@ -312,6 +309,7 @@ if (phoneBtn && phoneToast) {
   const totalItems = orbitItems.length;
 
   function positionOrbitItems() {
+    if (totalItems === 0) return;
     const radius = 140; // Cylinder radius
     const angleStep = (2 * Math.PI) / totalItems;
 
@@ -338,7 +336,7 @@ if (phoneBtn && phoneToast) {
 
   function startOrbitAutoRotation() {
     state.orbitInterval = setInterval(() => {
-      if (!state.orbitPaused) {
+      if (!state.orbitPaused && totalItems > 0) {
         state.orbitIndex = (state.orbitIndex + 1) % totalItems;
         positionOrbitItems();
       }
@@ -356,7 +354,8 @@ if (phoneBtn && phoneToast) {
       state.orbitIndex = index;
       positionOrbitItems();
 
-      const imgSrc = item.querySelector('img').src;
+      const imgEl = item.querySelector('img');
+      const imgSrc = imgEl ? imgEl.src : '';
       const name = item.getAttribute('data-name');
       const desc = item.getAttribute('data-desc');
 
