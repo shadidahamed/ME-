@@ -154,21 +154,80 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ==========================================================================
-  // 5. ASCII CODE FACE MATRIX GENERATOR
-  // ==========================================================================
-  const asciiTarget = document.getElementById('ascii-face-target');
-  if (asciiTarget) {
-    const rawChars = "01@#$&%*{}[]<>~/\\SHADID";
-    let lines = [];
-    for (let i = 0; i < 45; i++) {
-      let line = "";
-      for (let j = 0; j < 65; j++) {
-        line += rawChars[Math.floor(Math.random() * rawChars.length)];
+ // ==========================================================================
+// 5. HIGH-PRECISION DYNAMIC PORTRAIT ASCII ENGINE
+// ==========================================================================
+const asciiTarget = document.getElementById('ascii-face-target');
+
+if (asciiTarget) {
+  // Density scale from dark (dense code characters) to light (spaces)
+  const densityChars = ' @N#W$9876543210?!abc;:+=-,._ ';
+  const glitchSet = '01{}[]<>/\\*&#$%@';
+
+  const img = new Image();
+  // Uses your profile image from assets
+  img.src = 'assets/images/profile.jpg';
+
+  img.onload = () => {
+    // Hidden canvas for off-screen pixel processing
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // High resolution grid for precise facial features (eyes, glasses, jaw, hair)
+    const width = 80;
+    const height = Math.floor(img.height * (width / img.width) * 0.45);
+
+    canvas.width = width;
+    canvas.height = height;
+
+    // Draw image to scale on canvas
+    ctx.drawImage(img, 0, 0, width, height);
+    const imgData = ctx.getImageData(0, 0, width, height).data;
+
+    let baseAsciiMatrix = [];
+
+    // Convert pixel luminosity to corresponding density character
+    for (let y = 0; y < height; y++) {
+      let row = [];
+      for (let x = 0; x < width; x++) {
+        const offset = (y * width + x) * 4;
+        const r = imgData[offset];
+        const g = imgData[offset + 1];
+        const b = imgData[offset + 2];
+
+        // Perceptual brightness formula
+        const brightness = (0.299 * r + 0.587 * g + 0.114 * b);
+        const charIdx = Math.floor((1 - (brightness / 255)) * (densityChars.length - 1));
+        
+        row.push(densityChars[charIdx]);
       }
-      lines.push(line);
+      baseAsciiMatrix.push(row);
     }
-    asciiTarget.textContent = lines.join('\n');
+
+    // Render loop with subtle continuous code glitching
+    function renderMatrix() {
+      const glitchedText = baseAsciiMatrix.map(row => {
+        return row.map(ch => {
+          // Glitch non-space characters slightly to keep the matrix alive
+          if (ch !== ' ' && Math.random() < 0.02) {
+            return glitchSet[Math.floor(Math.random() * glitchSet.length)];
+          }
+          return ch;
+        }).join('');
+      }).join('\n');
+
+      asciiTarget.textContent = glitchedText;
+    }
+
+    renderMatrix();
+    // Continuous light code flicker
+    setInterval(renderMatrix, 100);
+  };
+
+  img.onerror = () => {
+    console.warn("Profile image failed to load for ASCII canvas processing. Ensure assets/images/profile.jpg is present.");
+  };
+}
 
     // Continuous glitch effect
     setInterval(() => {
