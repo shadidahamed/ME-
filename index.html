@@ -267,3 +267,580 @@
                     </div>
                 </div>
             </section>
+
+            <!-- PAGE 2: ABOUT PAGE -->
+            <section id="page-about" class="app-page">
+                <div class="page-container scrollable-glass-container">
+                    
+                    <!-- Billboard Style Name & Bio -->
+                    <div class="billboard-header">
+                        <h1 class="billboard-title">ALEXANDER VANE</h1>
+                        <div class="billboard-subtitle-badge">FULL STACK ARCHITECT &amp; UI/UX CREATIVE DIRECTOR</div>
+                    </div>
+
+                    <div class="bio-glass-card">
+                        <p class="bio-paragraph">
+                            I operate at the intersection of high-performance backend engineering, GPU-accelerated web graphics, and human-centric interface aesthetics. With over a decade of domain expertise, I build software experiences that blur the line between desktop-class applications and web platforms.
+                        </p>
+                    </div>
+
+                    <!-- 3D ORBITAL SKILLS SHOWCASE -->
+                    <div class="skills-orbital-section">
+                        <div class="section-title-wrap">
+                            <h2>TECHNICAL CAPABILITIES</h2>
+                            <p class="section-desc">Orbital Skill Matrix • Auto-rotates every 3s</p>
+                        </div>
+
+                        <div class="orbital-stage" id="orbital-stage">
+                            <!-- Fixed Arrow Pointer -->
+                            <div class="orbital-pointer-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+                            </div>
+
+                            <!-- Rotational Hub Ring -->
+                            <div class="orbital-ring" id="orbital-ring">
+                                <div class="skill-node active" data-skill-id="0" data-name="Full Stack Systems" data-desc="Architecting ultra-scalable node clusters, real-time WebSockets, and high-concurrency microservices with sub-millisecond latency.">
+                                    <div class="node-inner"><img src="assets/images/skills/fullstack.svg" alt="Full Stack"></div>
+                                </div>
+                                <div class="skill-node" data-skill-id="1" data-name="UI/UX Engineering" data-desc="Crafting pixel-perfect interface design systems inspired by Apple precision and Framer micro-interactions.">
+                                    <div class="node-inner"><img src="assets/images/skills/uiux.svg" alt="UI/UX"></div>
+                                </div>
+                                <div class="skill-node" data-skill-id="2" data-name="WebGL & Shader Motion" data-desc="Writing custom GLSL shaders, 60fps canvas visualizers, and spatial web animations using pure mathematical transformations.">
+                                    <div class="node-inner"><img src="assets/images/skills/webgl.svg" alt="WebGL"></div>
+                                </div>
+                                <div class="skill-node" data-skill-id="3" data-name="Motion Graphics" data-desc="Producing broadcast-grade motion design, keyframe kinetics, and liquid smooth UI physics transitions.">
+                                    <div class="node-inner"><img src="assets/images/skills/motion.svg" alt="Motion"></div>
+                                </div>
+                                <div class="skill-node" data-skill-id="4" data-name="Native Web APIs" data-desc="Mastering raw DOM operations, Web Audio API, IntersectionObserver, and hardware-accelerated CSS transforms without dependencies.">
+                                    <div class="node-inner"><img src="assets/images/skills/vanillajs.svg" alt="Vanilla JS"></div>
+                                </div>
+                            </div>
+
+                            <!-- Active Skill Title Overlay -->
+                            <div class="orbital-center-label">
+                                <span id="active-skill-title">Full Stack Systems</span>
+                            </div>
+                        </div>
+
+                        <!-- Enlarged Skill Description Glass Box -->
+                        <div class="skill-detail-glass" id="skill-detail-box">
+                            <h3 id="skill-box-title">Full Stack Systems</h3>
+                            <p id="skill-box-desc">Architecting ultra-scalable node clusters, real-time WebSockets, and high-concurrency microservices with sub-millisecond latency.</p>
+                            <span class="click-hint">Click active node to toggle expanded view</span>
+                        </div>
+                    </div>
+
+                    <!-- ACHIEVEMENTS / CERTIFICATES -->
+                    <div class="achievements-section">
+                        <div class="section-title-wrap">
+                            <h2>CERTIFICATIONS &amp; HONORS</h2>
+                        </div>
+                        <div class="certificates-grid">
+                            <div class="cert-card">
+                                <div class="cert-preview-wrapper">
+                                    <img src="assets/images/cert-1-preview.jpg" alt="Master Systems Architect Certificate" loading="lazy">
+                                    <div class="cert-badge">AWS / Cloud</div>
+                                </div>
+                                <div class="cert-info">
+                                    <h3>Master Systems Architect</h3>
+                                    <p>AWS Certified Solutions Architect – Professional Tier Qualification</p>
+                                    <div class="cert-actions">
+                                        <button class="cert-btn pdf-open-btn" data-pdf="assets/pdf/aws-certified.pdf">Open PDF</button>
+                                        <a href="assets/pdf/aws-certified.pdf" download class="cert-btn pdf-download-btn">Download</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cert-card">
+                                <div class="cert-preview-wrapper">
+                                    <img src="assets/images/cert-2-preview.jpg" alt="UI/UX Design Master Certificate" loading="lazy">
+                                    <div class="cert-badge">Design Systems</div>
+                                </div>
+                                <div class="cert-info">
+                                    <h3>Senior UX Systems Lead</h3>
+                                    <p>International Interaction Design &amp; Accessibility Certification</p>
+                                    <div class="cert-actions">
+                                        <button class="cert-btn pdf-open-btn" data-pdf="assets/pdf/ux-lead.pdf">Open PDF</button>
+                                        <a href="assets/pdf/ux-lead.pdf" download class="cert-btn pdf-download-btn">Download</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAMILY TREE BLOODLINE (3-4 Generations) -->
+                    <div class="family-tree-section">
+                        <div class="section-title-wrap">
+                            <h2>HERITAGE &amp; BLOODLINE</h2>
+                            <p class="section-desc">Interactive Generational Tree Structure</p>
+                        </div>
+
+                        <div class="tree-container">
+                            <!-- Father Side -->
+                            <div class="bloodline-column father-line">
+                                <h3 class="line-header">Paternal Lineage (Father)</h3>
+                                <div class="tree-branch">
+                                    <!-- Generation 1 -->
+                                    <div class="tree-node gen-1" data-node="f-gen1">
+                                        <div class="node-card">
+                                            <img src="assets/images/family/paternal-g1.jpg" alt="Paternal Great Grandfather">
+                                            <div class="node-meta">
+                                                <span class="node-relation">Great Grandfather</span>
+                                                <span class="node-name">Arthur Vane Sr.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="connector-line vertical"></div>
+                                    <!-- Generation 2 -->
+                                    <div class="tree-node gen-2" data-node="f-gen2">
+                                        <div class="node-card">
+                                            <img src="assets/images/family/paternal-g2.jpg" alt="Paternal Grandfather">
+                                            <div class="node-meta">
+                                                <span class="node-relation">Grandfather</span>
+                                                <span class="node-name">Edward Vane</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="connector-line vertical"></div>
+                                    <!-- Generation 3 -->
+                                    <div class="tree-node gen-3" data-node="f-gen3">
+                                        <div class="node-card highlight">
+                                            <img src="assets/images/family/father.jpg" alt="Father">
+                                            <div class="node-meta">
+                                                <span class="node-relation">Father</span>
+                                                <span class="node-name">Marcus Vane</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="line-divider-glowing"></div>
+
+                            <!-- Mother Side -->
+                            <div class="bloodline-column mother-line">
+                                <h3 class="line-header">Maternal Lineage (Mother)</h3>
+                                <div class="tree-branch">
+                                    <!-- Generation 1 -->
+                                    <div class="tree-node gen-1" data-node="m-gen1">
+                                        <div class="node-card">
+                                            <img src="assets/images/family/maternal-g1.jpg" alt="Maternal Great Grandfather">
+                                            <div class="node-meta">
+                                                <span class="node-relation">Great Grandfather</span>
+                                                <span class="node-name">Harrison Sterling</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="connector-line vertical"></div>
+                                    <!-- Generation 2 -->
+                                    <div class="tree-node gen-2" data-node="m-gen2">
+                                        <div class="node-card">
+                                            <img src="assets/images/family/maternal-g2.jpg" alt="Maternal Grandmother">
+                                            <div class="node-meta">
+                                                <span class="node-relation">Grandmother</span>
+                                                <span class="node-name">Clara Sterling</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="connector-line vertical"></div>
+                                    <!-- Generation 3 -->
+                                    <div class="tree-node gen-3" data-node="m-gen3">
+                                        <div class="node-card highlight">
+                                            <img src="assets/images/family/mother.jpg" alt="Mother">
+                                            <div class="node-meta">
+                                                <span class="node-relation">Mother</span>
+                                                <span class="node-name">Elena Sterling Vane</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MASONRY PHOTO GALLERY -->
+                    <div class="photo-gallery-section">
+                        <div class="section-title-wrap">
+                            <h2>VISUAL MEMOIRS</h2>
+                            <p class="section-desc">Masonry Photography Collection</p>
+                        </div>
+                        <div class="masonry-grid">
+                            <div class="masonry-item" data-full="assets/images/gallery/photo-1.jpg">
+                                <img src="assets/images/gallery/photo-1-thumb.jpg" alt="Architectural Study" loading="lazy">
+                            </div>
+                            <div class="masonry-item height-tall" data-full="assets/images/gallery/photo-2.jpg">
+                                <img src="assets/images/gallery/photo-2-thumb.jpg" alt="Cyberpunk Neon City" loading="lazy">
+                            </div>
+                            <div class="masonry-item" data-full="assets/images/gallery/photo-3.jpg">
+                                <img src="assets/images/gallery/photo-3-thumb.jpg" alt="Minimalist Workspace Setup" loading="lazy">
+                            </div>
+                            <div class="masonry-item height-wide" data-full="assets/images/gallery/photo-4.jpg">
+                                <img src="assets/images/gallery/photo-4-thumb.jpg" alt="Tokyo Night Lights" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROTATIONAL VIDEO SECTION -->
+                    <div class="video-showcase-section">
+                        <div class="section-title-wrap">
+                            <h2>CINEMATIC REELS</h2>
+                            <p class="section-desc">Circular Carousel • Click thumbnail to watch in modal</p>
+                        </div>
+                        <div class="video-carousel-stage">
+                            <div class="video-ring" id="video-ring">
+                                <div class="video-card-thumb" data-video-src="assets/videos/cinematic-1.mp4">
+                                    <img src="assets/images/video-thumb-1.jpg" alt="Cinematic Reel 1">
+                                    <div class="play-overlay"><span class="play-icon">▶</span></div>
+                                </div>
+                                <div class="video-card-thumb" data-video-src="assets/videos/cinematic-2.mp4">
+                                    <img src="assets/images/video-thumb-2.jpg" alt="Cinematic Reel 2">
+                                    <div class="play-overlay"><span class="play-icon">▶</span></div>
+                                </div>
+                                <div class="video-card-thumb" data-video-src="assets/videos/cinematic-3.mp4">
+                                    <img src="assets/images/video-thumb-3.jpg" alt="Cinematic Reel 3">
+                                    <div class="play-overlay"><span class="play-icon">▶</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- PAGE 3: EDUCATIONAL BACKGROUND PAGE -->
+            <section id="page-education" class="app-page">
+                <div class="page-container scrollable-glass-container">
+                    
+                    <div class="section-title-wrap text-center">
+                        <h2>ACADEMIC JOURNEY &amp; PROJECTS</h2>
+                        <p class="section-desc">Timeline of Formal Qualifications and Featured Code Architecture</p>
+                    </div>
+
+                    <!-- Timeline Section: School, College, University -->
+                    <div class="education-timeline">
+                        
+                        <!-- School -->
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content glass-card">
+                                <span class="time-period">2010 - 2016</span>
+                                <h3>Secondary School Honors</h3>
+                                <h4>St. Xavier International School</h4>
+                                <p>Specialized in Pure Physics and Mathematics. Graduated top 1% of the cohort with distinction.</p>
+                                <div class="timeline-tags">
+                                    <span>Mathematics</span><span>Physics</span><span>Computer Science</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- College -->
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content glass-card">
+                                <span class="time-period">2016 - 2018</span>
+                                <h3>Higher Secondary Science Diploma</h3>
+                                <h4>National Institute of Technology &amp; Science</h4>
+                                <p>Focused on advanced algorithmic logic, electronic circuits, and computer engineering fundamentals.</p>
+                                <div class="timeline-tags">
+                                    <span>Data Structures</span><span>Electronics</span><span>Logic Design</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- University with 3D Rotating Circular Gallery -->
+                        <div class="timeline-item highlight-item">
+                            <div class="timeline-marker neon-glow"></div>
+                            <div class="timeline-content glass-card">
+                                <span class="time-period">2018 - 2022</span>
+                                <h3>B.Sc. in Computer Science &amp; Engineering</h3>
+                                <h4>Massachusetts Institute of System Architecture</h4>
+                                <p>Major in Software Systems &amp; Graphics Engines. Valedictorian honors and Dean's List for 8 consecutive semesters.</p>
+
+                                <!-- 3D Rotating University Gallery (Swaps image every 5 seconds) -->
+                                <div class="uni-gallery-3d-stage">
+                                    <div class="uni-gallery-ring" id="uni-carousel">
+                                        <div class="uni-slide active" data-index="0">
+                                            <img src="assets/images/uni-1.jpg" alt="University Campus Main Library">
+                                            <div class="uni-slide-caption">Main Research Campus</div>
+                                        </div>
+                                        <div class="uni-slide" data-index="1">
+                                            <img src="assets/images/uni-2.jpg" alt="Computer Science Laboratory">
+                                            <div class="uni-slide-caption">Graphics Computing Lab</div>
+                                        </div>
+                                        <div class="uni-slide" data-index="2">
+                                            <img src="assets/images/uni-3.jpg" alt="Graduation Ceremony">
+                                            <div class="uni-slide-caption">Graduation Convocation</div>
+                                        </div>
+                                    </div>
+                                    <div class="uni-carousel-controls">
+                                        <button class="uni-nav-btn" id="uni-prev">&lt;</button>
+                                        <span class="uni-indicator" id="uni-indicator">1 / 3</span>
+                                        <button class="uni-nav-btn" id="uni-next">&gt;</button>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-tags">
+                                    <span>Distributed Systems</span><span>Computer Graphics</span><span>Algorithms</span><span>UI Engine Architecture</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROJECTS SECTION -->
+                    <div class="projects-section">
+                        <div class="section-title-wrap">
+                            <h2>FEATURED PROJECTS</h2>
+                            <p class="section-desc">Production Applications &amp; Open Source Core Systems</p>
+                        </div>
+
+                        <div class="projects-grid">
+                            
+                            <!-- Project 1 -->
+                            <div class="project-card glass-card">
+                                <div class="project-image-wrapper">
+                                    <img src="assets/images/project-1.jpg" alt="Aura OS Web Desktop Environment" loading="lazy">
+                                    <div class="project-overlay-glow"></div>
+                                </div>
+                                <div class="project-body">
+                                    <h3>Aura OS Shell</h3>
+                                    <p>A Web-based desktop operating system interface written purely in vanilla JS, simulating real windowing, audio synthesis, and hardware-accelerated rendering.</p>
+                                    <div class="project-tech-stack">
+                                        <span>HTML5 Canvas</span><span>Vanilla JS</span><span>CSS Grid/Flex</span><span>Web Audio API</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="https://github.com" target="_blank" rel="noopener" class="proj-btn github-link">GitHub Repo</a>
+                                        <a href="https://demo.aura-os.dev" target="_blank" rel="noopener" class="proj-btn live-link">Live Demo</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Project 2 -->
+                            <div class="project-card glass-card">
+                                <div class="project-image-wrapper">
+                                    <img src="assets/images/project-2.jpg" alt="Spatial GL Engine" loading="lazy">
+                                    <div class="project-overlay-glow"></div>
+                                </div>
+                                <div class="project-body">
+                                    <h3>HyperShader UI</h3>
+                                    <p>Low-overhead CSS and WebGL hybrid layout framework designed for ultra-smooth 60fps glassmorphic dashboard applications.</p>
+                                    <div class="project-tech-stack">
+                                        <span>GLSL Shaders</span><span>JavaScript</span><span>Custom Motion Physics</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="https://github.com" target="_blank" rel="noopener" class="proj-btn github-link">GitHub Repo</a>
+                                        <a href="https://demo.hypershader.dev" target="_blank" rel="noopener" class="proj-btn live-link">Live Demo</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- PAGE 4: INTERESTS PAGE -->
+            <section id="page-interests" class="app-page">
+                <div class="page-container scrollable-glass-container">
+                    
+                    <div class="section-title-wrap text-center">
+                        <h2>INTERESTS &amp; LIFESTYLE</h2>
+                        <p class="section-desc">Hobbies, Creative Outlets, and Personal Passions</p>
+                    </div>
+
+                    <div class="interests-grid">
+                        
+                        <div class="interest-card glass-card">
+                            <div class="interest-icon">📷</div>
+                            <div class="interest-media">
+                                <img src="assets/images/interests/photography.jpg" alt="Street Photography" loading="lazy">
+                            </div>
+                            <h3>Urban Photography</h3>
+                            <p>Capturing cyberpunk architecture, low-light street scenes, and glass-and-steel geometric symmetry across metropolitan cities.</p>
+                        </div>
+
+                        <div class="interest-card glass-card">
+                            <div class="interest-icon">🎧</div>
+                            <div class="interest-media">
+                                <img src="assets/images/interests/music.jpg" alt="Modular Synthesizer" loading="lazy">
+                            </div>
+                            <h3>Ambient Synth Audio</h3>
+                            <p>Designing space ambient soundtracks, sound synthesis, and algorithmic sound generation using modular hardware synthesis.</p>
+                        </div>
+
+                        <div class="interest-card glass-card">
+                            <div class="interest-icon">✈️</div>
+                            <div class="interest-media">
+                                <img src="assets/images/interests/travel.jpg" alt="Global Exploration" loading="lazy">
+                            </div>
+                            <h3>Architectural Travel</h3>
+                            <p>Exploring modern brutalist and futuristic architectural landmarks in Tokyo, Zurich, Singapore, and Oslo.</p>
+                        </div>
+
+                        <div class="interest-card glass-card">
+                            <div class="interest-icon">📚</div>
+                            <div class="interest-media">
+                                <img src="assets/images/interests/books.jpg" alt="Sci-Fi Literature" loading="lazy">
+                            </div>
+                            <h3>Sci-Fi &amp; Cybernetics</h3>
+                            <p>Deep diving into human-computer interaction theory, speculative fiction, speculative UI design, and quantum computing literature.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- PAGE 5: PERSONAL LIFE PAGE (PREMIUM NOTEBOOK) -->
+            <section id="page-personal" class="app-page">
+                <div class="notebook-wrapper">
+                    <div class="notebook-binder">
+                        <div class="binder-ring"></div>
+                        <div class="binder-ring"></div>
+                        <div class="binder-ring"></div>
+                        <div class="binder-ring"></div>
+                        <div class="binder-ring"></div>
+                    </div>
+
+                    <div class="notebook-paper" id="notebook-paper">
+                        
+                        <!-- Notebook Page 1 -->
+                        <div class="paper-page active" data-page="1">
+                            <div class="handwritten-header">
+                                <h2>My Inner Circle &amp; Memories</h2>
+                                <span class="page-number">Page 01</span>
+                            </div>
+
+                            <p class="handwritten-intro">
+                                "The inner architecture of life is built upon the individuals who inspire, ground, and journey alongside us."
+                            </p>
+
+                            <div class="people-notebook-grid">
+                                
+                                <!-- Friends: Marzuk & Nasif -->
+                                <div class="notebook-person-card">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/images/personal/marzuk.jpg" alt="Marzuk">
+                                    </div>
+                                    <div class="person-details">
+                                        <span class="relation-tag">- FRIEND</span>
+                                        <h3 class="handwritten-name">i. Marzuk</h3>
+                                        <p class="handwritten-note">Brother in code and creative collaborator. Always ready for late-night system builds.</p>
+                                    </div>
+                                </div>
+
+                                <div class="notebook-person-card">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/images/personal/nasif.jpg" alt="Nasif">
+                                    </div>
+                                    <div class="person-details">
+                                        <span class="relation-tag">- FRIEND</span>
+                                        <h3 class="handwritten-name">ii. Nasif</h3>
+                                        <p class="handwritten-note">Sound designer and strategist. The voice of reason in ambitious endeavors.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Love -->
+                                <div class="notebook-person-card feature-love">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/images/personal/love.jpg" alt="Love">
+                                    </div>
+                                    <div class="person-details">
+                                        <span class="relation-tag">- LOVE</span>
+                                        <h3 class="handwritten-name">My Compass</h3>
+                                        <p class="handwritten-note">My constant light and infinite source of peace, joy, and unconditional warmth.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <button class="notebook-turn-btn" id="turn-page-next">Turn to Family Page &rarr;</button>
+                        </div>
+
+                        <!-- Notebook Page 2 -->
+                        <div class="paper-page" data-page="2">
+                            <div class="handwritten-header">
+                                <h2>Family &amp; Pillars</h2>
+                                <span class="page-number">Page 02</span>
+                            </div>
+
+                            <div class="people-notebook-grid">
+                                
+                                <!-- Father -->
+                                <div class="notebook-person-card">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/images/personal/father.jpg" alt="Father">
+                                    </div>
+                                    <div class="person-details">
+                                        <span class="relation-tag">- FATHER</span>
+                                        <h3 class="handwritten-name">Marcus Vane</h3>
+                                        <p class="handwritten-note">Taught me integrity, discipline, and the value of master craftsmanship.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Mother -->
+                                <div class="notebook-person-card">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/images/personal/mother.jpg" alt="Mother">
+                                    </div>
+                                    <div class="person-details">
+                                        <span class="relation-tag">- MOTHER</span>
+                                        <h3 class="handwritten-name">Elena Sterling Vane</h3>
+                                        <p class="handwritten-note">Taught me empathy, creativity, resilience, and curiosity about the universe.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Sister -->
+                                <div class="notebook-person-card">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/images/personal/sister.jpg" alt="Sister">
+                                    </div>
+                                    <div class="person-details">
+                                        <span class="relation-tag">- SISTER</span>
+                                        <h3 class="handwritten-name">Arya Vane</h3>
+                                        <p class="handwritten-note">My lifelong confidante, joy bringer, and relentless challenger.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <button class="notebook-turn-btn" id="turn-page-prev">&larr; Back to Friends</button>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- GLOBAL LIGHTBOX / MODAL OVERLAYS -->
+
+    <!-- Image Lightbox Modal -->
+    <div id="global-image-lightbox" class="modal-lightbox" aria-hidden="true">
+        <button class="modal-close-btn" id="lightbox-close">&times;</button>
+        <div class="lightbox-content-wrap">
+            <img id="lightbox-target-img" src="" alt="Expanded View">
+            <p id="lightbox-caption" class="lightbox-caption"></p>
+        </div>
+    </div>
+
+    <!-- Video Fullscreen Modal -->
+    <div id="global-video-modal" class="modal-lightbox" aria-hidden="true">
+        <button class="modal-close-btn" id="video-modal-close">&times;</button>
+        <div class="lightbox-content-wrap video-wrap">
+            <video id="video-modal-player" controls autoplay playsinline></video>
+        </div>
+    </div>
+
+    <!-- PDF Viewer Modal -->
+    <div id="global-pdf-modal" class="modal-lightbox" aria-hidden="true">
+        <button class="modal-close-btn" id="pdf-modal-close">&times;</button>
+        <div class="lightbox-content-wrap pdf-wrap">
+            <iframe id="pdf-frame" src="" title="PDF Document Viewer"></iframe>
+        </div>
+    </div>
+
+    <!-- JavaScript Bundle Loading -->
+    <script src="script.js"></script>
+</body>
+</html>
