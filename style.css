@@ -335,6 +335,7 @@ body.hovering .cursor-ring {
 /* ==========================================================================
    PAGE 1: HOME PAGE STYLES
    ========================================================================== */
+
 /* Background Code Face Art */
 .code-face-bg-container {
   position: absolute;
@@ -342,10 +343,7 @@ body.hovering .cursor-ring {
   top: 50%;
   transform: translateY(-50%);
   width: 48%;
-  
-  /* Change this max-height value (e.g., from 85vh to 60vh or 100vh) */
   max-height: 85vh; 
-  
   opacity: 0.35;
   pointer-events: none;
   overflow: hidden;
@@ -354,18 +352,18 @@ body.hovering .cursor-ring {
   justify-content: center;
   align-items: center;
 }
+
 .ascii-face-art {
   font-family: 'Courier New', Courier, monospace;
-  
-  /* Adjust font-size and line-height together to change total height */
-  font-size: 8px;   /* e.g., decrease to 6px or increase to 10px */
-  line-height: 7px; /* decrease to shrink total height, increase to expand */
-  
-  letter-spacing: 1px;
+  font-weight: bold;
+  /* Font size and line-height balance keeps the shape from compressing or stretching */
+  font-size: 7px;   
+  line-height: 7px; 
+  letter-spacing: 2px; /* Smooths horizontal transitions */
   color: var(--secondary-orange);
   text-shadow: 0 0 6px var(--primary-red);
   white-space: pre;
-  text-align: center;
+  text-align: left; /* Crucial for keeping the drawing straight */
 }
 
 @media (max-width: 900px) {
