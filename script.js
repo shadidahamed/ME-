@@ -171,57 +171,65 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ==========================================================================
-  // 5. HIGH-PRECISION DYNAMIC PORTRAIT ASCII ENGINE
-  // ==========================================================================
-  const asciiTarget = document.getElementById('ascii-face-target');
+ 
+     // ==========================================================================
+// 5. HIGH-PRECISION DYNAMIC PORTRAIT ASCII ENGINE
+// ==========================================================================
+const asciiTarget = document.getElementById('ascii-face-target');
 
-  if (asciiTarget) {
-    // Density scale from dark (dense code characters) to light (spaces)
-    const densityChars = ' @N#W$9876543210?!abc;:+=-,._ ';
-    const glitchSet = '01{}[]<>/\\*&#$%@';
+if (asciiTarget) {
+  // Density scale inverted slightly to handle the white background properly
+  const densityChars = 'MWN$@#876543210?!abc;:+=-,._ ';
+  
+  const img = new Image();
+  img.src = '56798eb3-219b-46fd-9910-7a25dc6d18a5.jpeg';
 
-    const img = new Image();
-    // Uses your profile image from assets
-    img.src = '56798eb3-219b-46fd-9910-7a25dc6d18a5.jpeg';
+  img.onload = () => {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
 
-    img.onload = () => {
-      // Hidden canvas for off-screen pixel processing
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
+    // Increase target width for fine features like glasses and hair details
+    const width = 110; 
+    
+    // 0.41 accurately counter-balances standard monospace character heights
+    const height = Math.floor(img.height * (width / img.width) * 0.41);
+    
+    canvas.width = width;
+    canvas.height = height;
 
-      // High resolution grid for precise facial features (eyes, glasses, jaw, hair)
-     // High resolution grid for precise facial features
-const width = 80;
+    // Draw and read image pixels
+    ctx.drawImage(img, 0, 0, width, height);
+    const imgData = ctx.getImageData(0, 0, width, height).data;
 
-// Change the aspect multiplier (0.45) here to adjust generated row count/height
-const height = Math.floor(img.height * (width / img.width) * 0.65);
-      canvas.width = width;
-      canvas.height = height;
+    let asciiStr = "";
 
-      // Draw image to scale on canvas
-      ctx.drawImage(img, 0, 0, width, height);
-      const imgData = ctx.getImageData(0, 0, width, height).data;
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        const offset = (y * width + x) * 4;
+        const r = imgData[offset];
+        const g = imgData[offset + 1];
+        const b = imgData[offset + 2];
 
-      let baseAsciiMatrix = [];
-
-      // Convert pixel luminosity to corresponding density character
-      for (let y = 0; y < height; y++) {
-        let row = [];
-        for (let x = 0; x < width; x++) {
-          const offset = (y * width + x) * 4;
-          const r = imgData[offset];
-          const g = imgData[offset + 1];
-          const b = imgData[offset + 2];
-
-          // Perceptual brightness formula
-          const brightness = (0.299 * r + 0.587 * g + 0.114 * b);
-          const charIdx = Math.floor((1 - (brightness / 255)) * (densityChars.length - 1));
-          
-          row.push(densityChars[charIdx]);
+        // Perceptual brightness formula
+        const brightness = (0.299 * r + 0.587 * g + 0.114 * b);
+        
+        // Map brightness directly. Pure white background gets pure spaces
+        let charIdx = Math.floor((1 - (brightness / 255)) * (densityChars.length - 1));
+        
+        // Threshold check to clean up background noise around the edges
+        if (brightness > 240) {
+          asciiStr += " ";
+        } else {
+          asciiStr += densityChars[charIdx];
         }
-        baseAsciiMatrix.push(row);
       }
+      asciiStr += "\n";
+    }
+    
+    // Render the polished text directly
+    asciiTarget.textContent = asciiStr;
+  };
+}
 
       // Render loop with subtle continuous code glitching
       function renderMatrix() {
